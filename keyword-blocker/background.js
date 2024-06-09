@@ -11,7 +11,7 @@ async function updateBlockingRules() {
 		id: index + 1,
 		priority: 1,
 		action: { type: 'block' },
-		condition: { urlFilter: `*${keyword}*`, resourceTypes: ['main_frame'] }
+		condition: { urlFilter: keyword, resourceTypes: ['main_frame'] }
 	}));
 
 	// Update the dynamic rules with the new set of rules

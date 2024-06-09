@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "Keyword Blocker",
 	"version": "1.0",
-	"description": "Blocks websites containing banned keywords in the URL",
+	"description": "Blocks websites containing banned keywords in the URL, with wildcard support",
 	"permissions": [
 		"declarativeNetRequest",
 		"declarativeNetRequestWithHostAccess",

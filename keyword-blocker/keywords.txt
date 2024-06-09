@@ -1,4 +1,4 @@
 hot
-example
-keyword1
-keyword2
+spicy*
+*example
+key*word
