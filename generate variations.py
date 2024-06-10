@@ -23,8 +23,10 @@ def process_keywords(input_file, output_file):
 	sorted_variations = sorted(all_variations, key=lambda x: re.sub(r'[^a-zA-Z0-9]', '', x).lower())
 
 	with open(output_file, 'w') as file:
-		for variation in sorted_variations:
-			file.write(variation + '\n')
+		for i, variation in enumerate(sorted_variations):
+			if i != 0:
+				file.write('\n')
+			file.write(variation)
 
 def main():
 	input_file = 'keyword-blocker/keywords.txt'
