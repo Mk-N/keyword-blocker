@@ -16,7 +16,7 @@ def main():
 		keyword_list = file.readlines()
 
 	# Example input string
-	input_string = 'This is a test string with the word sexy and some other text.'
+	input_string = 'https://www.bbc.co.uk/cbbc/watch/bp-matilda-the-musical-performance?collection=trending-on-cbbc'
 
 	# Find blocking keywords
 	blocking_keywords = find_blocking_keywords(keyword_list, input_string)
