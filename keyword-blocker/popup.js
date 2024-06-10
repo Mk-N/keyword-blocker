@@ -7,16 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Load keywords and notification state from local storage
 	chrome.storage.local.get(['keywords', 'notificationEnabled'], result => {
-		textarea.value = result.keywords || '';
+		textarea.value = result.keywords ? result.keywords.join('\n') : '';
 		notificationToggle.checked = result.notificationEnabled || false;
 	});
 
 	// Save keywords and notification toggle state
 	saveButton.addEventListener('click', () => {
-		const keywords = textarea.value.trim();
+		const keywords = textarea.value.trim().split('\n').map(keyword => keyword.trim()).filter(keyword => keyword);
 		const notificationEnabled = notificationToggle.checked;
 		chrome.storage.local.set({ keywords, notificationEnabled }, () => {
 			alert('Keywords and notification toggle saved locally!');
+			chrome.runtime.sendMessage({ action: 'updateRules' });
 		});
 	});
 
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		notificationToggle.checked = false;
 		chrome.storage.local.remove(['keywords', 'notificationEnabled'], () => {
 			alert('Keywords and notification toggle reset to default!');
+			chrome.runtime.sendMessage({ action: 'updateRules' });
 		});
 	});
 });
