@@ -68,5 +68,9 @@ chrome.storage.onChanged.addListener((changes, area) => {
 chrome.runtime.onStartup.addListener(initialize);
 chrome.runtime.onInstalled.addListener(initialize);
 
-// Listen for rule matches and handle notifications
-chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(handleBlockedRequest);
+// Listen to web requests and handle them
+chrome.webRequest.onBeforeRequest.addListener(
+	handleBlockedRequest,
+	{ urls: ["<all_urls>"] },
+	["blocking"]
+);
