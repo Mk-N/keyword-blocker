@@ -31,10 +31,10 @@ def process_keywords(input_file, output_file):
 		all_variations.update(variations)
 
 	sorted_variations = sorted(all_variations, key=lambda x: re.sub(r'[^a-zA-Z0-9]', '', x).lower())
-	unique_variations = list(dict.fromkeys(sorted))
+	unique_variations = list(dict.fromkeys(sorted_variations))
 
 	# Filter out empty or whitespace-only lines
-	final_variations = [variation for variation in sorted_variations if variation.strip()]
+	final_variations = [variation for variation in unique_variations if variation.strip()]
 
 	with open(output_file, 'w', encoding='utf-8') as file:
 		for i, variation in enumerate(final_variations):
