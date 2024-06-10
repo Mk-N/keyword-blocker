@@ -1,4 +1,3 @@
-// popup.js
 document.addEventListener('DOMContentLoaded', () => {
 	const textarea = document.getElementById('keywords');
 	const saveButton = document.getElementById('save');
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		const notificationEnabled = notificationToggle.checked;
 		chrome.storage.local.set({ keywords, notificationEnabled }, () => {
 			alert('Keywords and notification toggle saved locally!');
-			chrome.runtime.sendMessage({ action: 'updateRules' });
 		});
 	});
 
@@ -27,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		notificationToggle.checked = false;
 		chrome.storage.local.remove(['keywords', 'notificationEnabled'], () => {
 			alert('Keywords and notification toggle reset to default!');
-			chrome.runtime.sendMessage({ action: 'updateRules' });
 		});
 	});
 });
