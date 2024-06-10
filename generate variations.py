@@ -31,8 +31,11 @@ def process_keywords(input_file, output_file):
 
 	sorted_variations = sorted(all_variations, key=lambda x: re.sub(r'[^a-zA-Z0-9]', '', x).lower())
 
+	# Filter out empty or whitespace-only lines
+	final_variations = [variation for variation in sorted_variations if variation.strip()]
+
 	with open(output_file, 'w', encoding='utf-8') as file:
-		for i, variation in enumerate(sorted_variations):
+		for i, variation in enumerate(final_variations):
 			if i != 0:
 				file.write('\n')
 			file.write(variation)
