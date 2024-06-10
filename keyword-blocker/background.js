@@ -27,7 +27,7 @@ async function updateBlockingRules() {
 }
 
 // Function to notify when a page is blocked
-async function handleBeforeRequest(details) {
+async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
 
 	for (let keyword of keywords) {
@@ -44,8 +44,22 @@ async function handleBeforeRequest(details) {
 	}
 }
 
-// Set up event listener for blocked requests
-chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(handleBeforeRequest);
+// Initial setup to update rules and handle blocked requests
+async function initialize() {
+	await updateBlockingRules();
+
+	// Example function to get matched rules for debugging
+	async function getMatchedRules() {
+		const matchedRules = await chrome.declarativeNetRequest.getMatchedRules();
+		console.log('Matched Rules:', matchedRules);
+	}
+
+	// Uncomment this line to debug matched rules
+	// getMatchedRules();
+}
+
+chrome.runtime.onStartup.addListener(initialize);
+chrome.runtime.onInstalled.addListener(initialize);
 
 // Listen for storage changes and update rules
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -54,5 +68,5 @@ chrome.storage.onChanged.addListener((changes, area) => {
 	}
 });
 
-// Initial setup
-updateBlockingRules();
+// Handle blocked requests and notify if necessary
+chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(handleBlockedRequest);
