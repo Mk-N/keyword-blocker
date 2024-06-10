@@ -6,11 +6,8 @@
 	"permissions": [
 		"declarativeNetRequest",
 		"declarativeNetRequestWithHostAccess",
-		"webRequest",
-		"webRequestBlocking",
 		"storage",
-		"notifications",
-		"activeTab"
+		"notifications"
 	],
 	"background": {
 		"service_worker": "background.js"

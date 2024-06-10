@@ -47,14 +47,6 @@ async function handleBlockedRequest(details) {
 // Initialize the extension
 async function initialize() {
 	await updateBlockingRules();
-
-	// Use chrome.declarativeNetRequest.getDynamicRules to get current rules for debugging purposes
-	// Uncomment for debugging
-	/*
-	chrome.declarativeNetRequest.getDynamicRules((rules) => {
-		console.log('Current dynamic rules:', rules);
-	});
-	*/
 }
 
 // Listen for storage changes and update rules
