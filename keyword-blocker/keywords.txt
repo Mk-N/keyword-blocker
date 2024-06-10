@@ -1354,3 +1354,9 @@ btch
 manpaste
 nookie
 ching chong
+g string
+t string
+t front
+t back
+v string
+c strings
