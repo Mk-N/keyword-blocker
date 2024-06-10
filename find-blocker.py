@@ -12,7 +12,7 @@ def find_blocking_keywords(keywords, input_string):
 
 def main():
 	# Read keywords from file
-	with open('keyword-blocker/keywords.txt', 'r') as file:
+	with open('keyword-blocker/complete_keystrings.txt', 'r') as file:
 		keyword_list = file.readlines()
 
 	# Example input string

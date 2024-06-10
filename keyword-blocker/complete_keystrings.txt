@@ -263,7 +263,6 @@ boner
 bong
 bo*_*ob
 bo*+*ob
-b*-*o*-*o*-*b
 bo* *ob
 b*+*o*+*o*+*b
 b*_*o*_*o*_*b
@@ -912,7 +911,6 @@ hebe
 heeb
 h*+*e*+*l*+*l
 h*_*e*_*l*_*l
-h*-*e*-*l*-*l
 hell
 h* *e* *l* *l
 h e l l
@@ -1442,7 +1440,6 @@ pimped
 pimper
 pimpjuic
 pinko
-p*-*i*-*s
 p*+*i*+*s
 p* *i* *s
 p*_*i*_*s
@@ -1685,7 +1682,6 @@ s*_*hit
 s_h_i_t
 s.h.i.t.
 s*+*h*+*i*+*t
-s*-*h*-*i*-*t
 shit
 s* *hit
 s*-*hit
@@ -1898,7 +1894,6 @@ tinkle
 t* *i* *t
 t*_*i*_*t
 t*+*i*+*t
-t*-*i*-*t
 tit
 t i t
 to*%20*murder
