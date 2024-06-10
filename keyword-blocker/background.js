@@ -26,7 +26,7 @@ async function updateBlockingRules() {
 	});
 }
 
-// Function to notify when a page is blocked
+// Handle notifications for blocked requests
 async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
 
@@ -67,3 +67,10 @@ chrome.storage.onChanged.addListener((changes, area) => {
 // Service worker events for initialization
 chrome.runtime.onStartup.addListener(initialize);
 chrome.runtime.onInstalled.addListener(initialize);
+
+// Listen to web requests and handle them
+chrome.webRequest.onBeforeRequest.addListener(
+	handleBlockedRequest,
+	{ urls: ["<all_urls>"] },
+	["blocking"]
+);
