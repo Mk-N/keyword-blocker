@@ -1,8 +1,3 @@
-// Log the content of local storage
-chrome.storage.local.get(null, function (items) {
-	console.log('Local Storage:', items);
-});
-
 // Load keywords and notification state from storage
 async function loadKeywordsAndNotificationState() {
 	return new Promise((resolve) => {
@@ -25,9 +20,19 @@ async function updateBlockingRules() {
 		condition: { urlFilter: `*${keyword}*`, resourceTypes: ['main_frame'] }
 	}));
 
-	chrome.declarativeNetRequest.updateDynamicRules({
-		removeRuleIds: Array.from({ length: 1000 }, (_, i) => i + 1),
-		addRules: rules
+	// Remove old rules and add new ones
+	chrome.declarativeNetRequest.getDynamicRules(existingRules => {
+		let removeRuleIds = existingRules.map(rule => rule.id);
+		chrome.declarativeNetRequest.updateDynamicRules({
+			removeRuleIds: removeRuleIds,
+			addRules: rules
+		}, () => {
+			if (chrome.runtime.lastError) {
+				console.error(chrome.runtime.lastError);
+			} else {
+				console.log("Rules updated successfully");
+			}
+		});
 	});
 }
 
@@ -53,6 +58,11 @@ async function handleBlockedRequest(details) {
 async function initialize() {
 	await updateBlockingRules();
 }
+
+// Log the content of local storage
+chrome.storage.local.get(null, function (items) {
+	console.log('Local Storage:', items);
+});
 
 // Listen for storage changes and update rules
 chrome.storage.onChanged.addListener((changes, area) => {
