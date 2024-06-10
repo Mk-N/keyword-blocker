@@ -1,3 +1,8 @@
+// Log the content of local storage
+chrome.storage.local.get(null, function (items) {
+	console.log('Local Storage:', items);
+});
+
 // Load keywords and notification state from storage
 async function loadKeywordsAndNotificationState() {
 	return new Promise((resolve) => {
@@ -26,7 +31,7 @@ async function updateBlockingRules() {
 	});
 }
 
-// Handle notifications for blocked requests
+// Function to notify when a page is blocked
 async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
 
@@ -47,14 +52,6 @@ async function handleBlockedRequest(details) {
 // Initialize the extension
 async function initialize() {
 	await updateBlockingRules();
-
-	// Use chrome.declarativeNetRequest.getDynamicRules to get current rules for debugging purposes
-	// Uncomment for debugging
-	/*
-	chrome.declarativeNetRequest.getDynamicRules((rules) => {
-		console.log('Current dynamic rules:', rules);
-	});
-	*/
 }
 
 // Listen for storage changes and update rules
@@ -67,6 +64,3 @@ chrome.storage.onChanged.addListener((changes, area) => {
 // Service worker events for initialization
 chrome.runtime.onStartup.addListener(initialize);
 chrome.runtime.onInstalled.addListener(initialize);
-
-// Listen for rule matches and handle notifications
-chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(handleBlockedRequest);
