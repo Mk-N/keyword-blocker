@@ -4,6 +4,8 @@
 	"version": "1.0",
 	"description": "Blocks websites containing banned keywords in the URL, with wildcard support and notifications",
 	"permissions": [
+		"declarativeNetRequest",
+		"declarativeNetRequestWithHostAccess",
 		"storage",
 		"scripting"
 	],
