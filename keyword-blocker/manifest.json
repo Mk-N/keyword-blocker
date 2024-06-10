@@ -6,8 +6,6 @@
 	"permissions": [
 		"declarativeNetRequest",
 		"declarativeNetRequestWithHostAccess",
-		"webRequest",
-		"webRequestBlocking",
 		"storage",
 		"notifications",
 		"activeTab"
