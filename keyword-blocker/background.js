@@ -1,3 +1,8 @@
+// Log the content of local storage
+chrome.storage.local.get(null, function (items) {
+	console.log('Local Storage:', items);
+});
+
 // Load keywords and notification state from storage
 async function loadKeywordsAndNotificationState() {
 	return new Promise((resolve) => {
