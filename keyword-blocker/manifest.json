@@ -4,14 +4,22 @@
 	"version": "1.0",
 	"description": "Blocks websites containing banned keywords in the URL, with wildcard support and notifications",
 	"permissions": [
-		"declarativeNetRequest",
-		"declarativeNetRequestWithHostAccess",
 		"storage",
-		"notifications"
+		"scripting"
 	],
 	"background": {
 		"service_worker": "background.js"
 	},
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"contentScript.js"
+			]
+		}
+	],
 	"action": {
 		"default_popup": "popup.html",
 		"default_icon": "icon.png"
