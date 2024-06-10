@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const resetButton = document.getElementById('reset');
 	const notificationToggle = document.getElementById('notificationToggle');
 
-	// Load keywords from local storage
+	// Load keywords and notification state from local storage
 	chrome.storage.local.get(['keywords', 'notificationEnabled'], result => {
 		textarea.value = result.keywords || '';
 		notificationToggle.checked = result.notificationEnabled || false;
