@@ -1,16 +1,13 @@
 {
 	"manifest_version": 3,
 	"name": "Keyword Blocker",
-	"version": "1.0",
+	"version": "0.6",
 	"description": "Blocks websites containing banned keywords in the URL, with wildcard support and notifications",
 	"permissions": [
 		"declarativeNetRequest",
 		"declarativeNetRequestWithHostAccess",
-		"webRequest",
-		"webRequestBlocking",
 		"storage",
-		"notifications",
-		"activeTab"
+		"notifications"
 	],
 	"background": {
 		"service_worker": "background.js"
