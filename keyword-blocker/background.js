@@ -44,22 +44,18 @@ async function handleBlockedRequest(details) {
 	}
 }
 
-// Initial setup to update rules and handle blocked requests
+// Initialize the extension
 async function initialize() {
 	await updateBlockingRules();
 
-	// Example function to get matched rules for debugging
-	async function getMatchedRules() {
-		const matchedRules = await chrome.declarativeNetRequest.getMatchedRules();
-		console.log('Matched Rules:', matchedRules);
-	}
-
-	// Uncomment this line to debug matched rules
-	// getMatchedRules();
+	// Use chrome.declarativeNetRequest.getDynamicRules to get current rules for debugging purposes
+	// Uncomment for debugging
+	/*
+	chrome.declarativeNetRequest.getDynamicRules((rules) => {
+		console.log('Current dynamic rules:', rules);
+	});
+	*/
 }
-
-chrome.runtime.onStartup.addListener(initialize);
-chrome.runtime.onInstalled.addListener(initialize);
 
 // Listen for storage changes and update rules
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -68,5 +64,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
 	}
 });
 
-// Handle blocked requests and notify if necessary
-chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(handleBlockedRequest);
+// Service worker events for initialization
+chrome.runtime.onStartup.addListener(initialize);
+chrome.runtime.onInstalled.addListener(initialize);
