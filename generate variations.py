@@ -6,10 +6,10 @@ def generate_variations(keyword):
 	variations.append(keyword)  # Add the original keyword
 	variations.append(keyword.replace(' ', ''))  # Replace spaces with * *
 	variations.append(keyword.replace(' ', '* *'))  # Replace spaces with * *
-	variations.append(keyword.replace(' ', '*-*'))  # Replace spaces with *-*
-	variations.append(keyword.replace(' ', '*+*'))  # Replace spaces with *+*
-	variations.append(keyword.replace(' ', '*%20*'))  # Replace spaces with *%20*
-	variations.append(keyword.replace(' ', '*_*'))  # Replace spaces with *_*
+	variations.append(keyword.replace(' ', '-'))  # Replace spaces with *-*
+	variations.append(keyword.replace(' ', '+'))  # Replace spaces with *+*
+	variations.append(keyword.replace(' ', '%20'))  # Replace spaces with *%20*
+	variations.append(keyword.replace(' ', '_'))  # Replace spaces with *_*
 
 	return variations
 
