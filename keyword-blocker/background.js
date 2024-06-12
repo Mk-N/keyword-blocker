@@ -17,7 +17,7 @@ async function updateBlockingRules() {
 		id: index + 1,
 		priority: 1,
 		action: { type: 'block' },
-		condition: { urlFilter: `*${keyword}*`, resourceTypes: ['main_frame'] }
+		condition: { urlFilter: '.*', regexFilter: keyword, resourceTypes: ['main_frame'] }
 	}));
 
 	// Remove old rules and add new ones
@@ -30,7 +30,7 @@ async function updateBlockingRules() {
 			if (chrome.runtime.lastError) {
 				console.error(chrome.runtime.lastError);
 			} else {
-				console.log("Rules updated successfully");
+				console.log("Rules updated successfully with regex support");
 			}
 		});
 	});
@@ -41,12 +41,13 @@ async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
 
 	for (let keyword of keywords) {
-		if (details.url.includes(keyword) && notificationEnabled) {
+		const regex = new RegExp(keyword);
+		if (regex.test(details.url) && notificationEnabled) {
 			const notificationOptions = {
 				type: 'basic',
 				iconUrl: 'icon.png',
 				title: 'Keyword Blocker',
-				message: `The page was blocked because it contains the banned keyword: ${keyword}`
+				message: `The page was blocked because it contains the banned keyword pattern: ${keyword}`
 			};
 			chrome.notifications.create(null, notificationOptions);
 			break;
