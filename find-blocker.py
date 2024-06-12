@@ -16,7 +16,7 @@ def main():
 		keyword_list = file.readlines()
 
 	# Example input string
-	input_string = 'https://www.bing.com/search?q=ella+bright&gs_lcrp=EgZjaHJvbWUqBggAEAAYQDIGCAAQABhAMgYIARAAGEAyBggCEAAYQDIGCAMQABhAMgcIBBBFGMIDMgcIBRBFGMIDMgcIBhBFGMIDMgcIBxBFGMID0gEJMTMwNzFqMGo5qAIEsAIB&FORM=ANAB01&PC=DCTS'
+	input_string = 'https://www.aqa.org.uk/subjects/geography/gcse/geography-8035/scheme-of-assessment'
 
 	# Find blocking keywords
 	blocking_keywords = find_blocking_keywords(keyword_list, input_string)
