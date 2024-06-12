@@ -1,12 +1,12 @@
 @$$
 2%20girls%201%20cup
 2g1c
+2_girls_1_cup
 2 girls 1 cup
+2-girls-1-cup
+2* *girls* *1* *cup
 2+girls+1+cup
 2girls1cup
-2* *girls* *1* *cup
-2-girls-1-cup
-2_girls_1_cup
 5h1t
 5hit
 5ht
@@ -21,19 +21,19 @@ aeolus
 africoon
 ahole
 alabama%20hot%20pocket
-alabama_hot_pocket
-alabamahotpocket
 alabama-hot-pocket
-alabama* *hot* *pocket
 alabama+hot+pocket
+alabamahotpocket
+alabama* *hot* *pocket
 alabama hot pocket
+alabama_hot_pocket
 alaskan%20pipeline
-alaskan pipeline
 alaskan-pipeline
 alaskan* *pipeline
 alaskan+pipeline
-alaskanpipeline
+alaskan pipeline
 alaskan_pipeline
+alaskanpipeline
 amcik
 anal
 andskota
@@ -51,12 +51,12 @@ arse
 aryan
 ash0le
 asholes
-ass
-a* *s* *s
 a-s-s
-a s s
-a+s+s
+a* *s* *s
 a_s_s
+a+s+s
+ass
+a s s
 ayir
 azazel
 azz
@@ -71,35 +71,35 @@ babeland
 babes
 baby%20batter
 baby%20juice
+baby-batter
+baby* *batter
+baby_batter
+baby batter
 babybatter
 baby+batter
-baby-batter
-baby_batter
-baby* *batter
-baby batter
-baby-juice
 babyjuice
+baby-juice
 baby* *juice
-baby+juice
 baby_juice
 baby juice
+baby+juice
 backdoor
 bagging
 ball%20gag
 ball%20gravy
 ballbag
-ball-gag
-ball+gag
-ballgag
-ball_gag
-ball* *gag
 ball gag
-ball+gravy
-ball gravy
-ball* *gravy
-ball_gravy
-ballgravy
+ballgag
+ball+gag
+ball* *gag
+ball-gag
+ball_gag
 ball-gravy
+ball gravy
+ballgravy
+ball_gravy
+ball* *gravy
+ball+gravy
 bampot
 bandeau
 bangbro
@@ -109,18 +109,18 @@ banging
 bareback
 barely%20legal
 barelylegal
-barely_legal
 barely-legal
-barely* *legal
-barely legal
 barely+legal
+barely legal
+barely_legal
+barely* *legal
 barf
-bastard
-b+a+s+t+a+r+d
-b* *a* *s* *t* *a* *r* *d
 b-a-s-t-a-r-d
 b a s t a r d
 b_a_s_t_a_r_d
+bastard
+b* *a* *s* *t* *a* *r* *d
+b+a+s+t+a+r+d
 bawdy
 bazongas
 bazooms
@@ -138,25 +138,25 @@ beatoff
 beatyourmeat
 beaver%20cleaver
 beaver%20lips
-beaver-cleaver
 beavercleaver
-beaver* *cleaver
-beaver cleaver
-beaver+cleaver
 beaver_cleaver
-beaverlips
+beaver cleaver
+beaver-cleaver
+beaver+cleaver
+beaver* *cleaver
+beaver-lips
 beaver_lips
-beaver lips
 beaver* *lips
 beaver+lips
-beaver-lips
+beaver lips
+beaverlips
 beef%20curtains
-beef* *curtains
-beef-curtains
-beef+curtains
-beefcurtains
 beef_curtains
 beef curtains
+beef+curtains
+beef* *curtains
+beefcurtains
+beef-curtains
 beeyotch
 bellend
 beotch
@@ -165,36 +165,36 @@ bi%20curious
 bi7ch
 biatch
 bi+ch
+bi-curious
+bi_curious
 bi* *curious
 bi curious
-bi_curious
 bicurious
-bi-curious
 bi+curious
 big%20black
 big%20breasts
 big+black
-big-black
-bigblack
-big_black
-big black
 big* *black
-big breasts
+big_black
+big-black
+big black
+bigblack
 big-breasts
-bigbreasts
-big* *breasts
 big_breasts
+bigbreasts
 big+breasts
+big breasts
+big* *breasts
 bikini
 bimbo
 bint
 birdlock
 b-i-t-c-h
 b_i_t_c_h
-b i t c h
-bitch
-b+i+t+c+h
 b* *i* *t* *c* *h
+bitch
+b i t c h
+b+i+t+c+h
 biteme
 bitties
 blackman
@@ -202,43 +202,43 @@ blackout
 blacks
 blonde%20action
 blonde%20on%20blonde
-blonde* *action
-blonde action
 blondeaction
-blonde_action
 blonde+action
 blonde-action
+blonde_action
+blonde action
+blonde* *action
+blonde on blonde
 blonde* *on* *blonde
-blonde+on+blonde
 blonde_on_blonde
 blondeonblonde
 blonde-on-blonde
-blonde on blonde
+blonde+on+blonde
 bloodclaat
 bloody
 blow%20j
 blow%20your%20l
-blow_j
 blow j
 blow* *j
 blowj
+blow_j
 blow+j
 blow-j
 blowjob
-blow your l
-blow-your-l
 blow* *your* *l
+blow-your-l
+blowyourl
+blow your l
 blow_your_l
 blow+your+l
-blowyourl
 blue%20waffle
 bluegum
-blue+waffle
-bluewaffle
-blue_waffle
 blue waffle
 blue-waffle
+blue+waffle
+bluewaffle
 blue* *waffle
+blue_waffle
 blumpkin
 bo%20ob
 boang
@@ -260,17 +260,17 @@ bondage
 boned
 boner
 bong
-bo ob
-b o o b
-bo+ob
-boob
-bo-ob
-b* *o* *o* *b
-bo* *ob
 b+o+o+b
+bo* *ob
+b* *o* *o* *b
+bo ob
+bo-ob
 bo_ob
 b_o_o_b
 b-o-o-b
+b o o b
+bo+ob
+boob
 bookie
 boong
 boonie
@@ -285,30 +285,30 @@ boozy
 bosch
 bosomy
 bounty%20bar
-bounty* *bar
 bounty_bar
 bounty bar
-bounty+bar
 bountybar
+bounty+bar
 bounty-bar
+bounty* *bar
 brea5t
 breastjob
 breastlover
 breastman
 brown%20shower
-brown-shower
-brown+shower
-brownshower
-brown shower
 brown_shower
 brown* *shower
+brown+shower
+brown shower
+brownshower
+brown-shower
 brunette%20action
-brunette_action
-brunette+action
-brunette action
-brunette-action
 brunetteaction
 brunette* *action
+brunette action
+brunette+action
+brunette_action
+brunette-action
 b!tch
 btch
 buceta
@@ -318,24 +318,24 @@ bugger
 bukake
 bukkake
 bullet%20vibe
-bullet vibe
-bulletvibe
 bullet_vibe
-bullet+vibe
+bulletvibe
 bullet-vibe
+bullet vibe
 bullet* *vibe
+bullet+vibe
 bullturds
 bung
 burr%20head
-burr+head
+burr-head
+burr head
 burr_head
 burr* *head
-burr head
 burrhead
-burr-head
+burr+head
 byatch
-c-0-c-k
 c0ck
+c-0-c-k
 c.0.c.k
 c0k
 c%20string
@@ -346,18 +346,18 @@ cacker
 cahone
 camel%20jockey
 camel%20toe
-camel* *jockey
-cameljockey
-camel_jockey
-camel jockey
 camel+jockey
+camel_jockey
+cameljockey
+camel* *jockey
 camel-jockey
-camel toe
-cameltoe
-camel_toe
-camel+toe
-camel* *toe
+camel jockey
 camel-toe
+camel* *toe
+camel_toe
+camel toe
+camel+toe
+cameltoe
 camgirl
 carruth
 cawk
@@ -367,27 +367,27 @@ cheese%20eating%20surrender%20monkey
 cheese%20eating%20surrender%20monkies
 cheeseeating%20surrender%20monkey
 cheeseeating%20surrender%20monkies
+cheeseeating+surrender+monkey
 cheese-eating-surrender-monkey
 cheese_eating_surrender_monkey
-cheese+eating+surrender+monkey
-cheeseeating-surrender-monkey
-cheeseeatingsurrendermonkey
 cheese* *eating* *surrender* *monkey
-cheese eating surrender monkey
-cheeseeating* *surrender* *monkey
-cheeseeating+surrender+monkey
+cheeseeatingsurrendermonkey
 cheeseeating_surrender_monkey
+cheeseeating-surrender-monkey
+cheeseeating* *surrender* *monkey
+cheese eating surrender monkey
+cheese+eating+surrender+monkey
 cheeseeating surrender monkey
-cheeseeating-surrender-monkies
-cheese* *eating* *surrender* *monkies
-cheese+eating+surrender+monkies
-cheeseeating* *surrender* *monkies
 cheeseeating surrender monkies
+cheeseeating-surrender-monkies
+cheeseeatingsurrendermonkies
+cheese* *eating* *surrender* *monkies
+cheese_eating_surrender_monkies
+cheese+eating+surrender+monkies
+cheese-eating-surrender-monkies
 cheeseeating+surrender+monkies
 cheese eating surrender monkies
-cheeseeatingsurrendermonkies
-cheese_eating_surrender_monkies
-cheese-eating-surrender-monkies
+cheeseeating* *surrender* *monkies
 cheeseeating_surrender_monkies
 cheesehead
 cherrypopper
@@ -395,32 +395,32 @@ chickslick
 china%20swede
 chinaman
 chinamen
-china-swede
-china swede
 china* *swede
 china_swede
-chinaswede
 china+swede
+china swede
+chinaswede
+china-swede
 chinc
 ching%20chong
 chinga
-ching* *chong
-chingchong
-ching chong
-ching-chong
-ching_chong
 ching+chong
+ching* *chong
+ching-chong
+ching chong
+chingchong
+ching_chong
 chink
 choad
 chode
 chraa
 christ%20killer
-christkiller
-christ+killer
 christ_killer
 christ-killer
 christ killer
+christkiller
 christ* *killer
+christ+killer
 chug
 chuj
 chunger
@@ -437,20 +437,20 @@ clansmen
 clanswoman
 clanswomen
 cleveland%20steamer
-cleveland* *steamer
-clevelandsteamer
-cleveland_steamer
-cleveland+steamer
 cleveland steamer
+cleveland* *steamer
+cleveland_steamer
+clevelandsteamer
 cleveland-steamer
+cleveland+steamer
 clit
 cnts
 cntz
 cnut
 cocain
+cock
 c.o.c.k.
 c-o-c-k
-cock
 cohee
 coital
 coitus
@@ -474,24 +474,24 @@ crackpipe
 crap
 creampie
 crotch
-c_string
-cstring
 c string
 c+string
 c-string
+cstring
+c_string
 c* *string
 cuck
 cum
 cunilingus
 cunillingus
 cunn
-c+u+n+t
-c-u-n-t
-cunt
-c_u_n_t
-c* *u* *n* *t
 c u n t
 c.u.n.t
+c_u_n_t
+cunt
+c* *u* *n* *t
+c-u-n-t
+c+u+n+t
 cushi
 cyalis
 cyberfuc
@@ -511,22 +511,22 @@ darkey
 darkie
 darky
 dawgie%20style
-dawgiestyle
-dawgie_style
 dawgie style
-dawgie+style
+dawgiestyle
 dawgie-style
+dawgie_style
+dawgie+style
 dawgie* *style
 daygo
 deapthroat
 deep%20throat
 deepaction
-deep* *throat
-deep throat
-deep_throat
-deep+throat
-deep-throat
 deepthroat
+deep+throat
+deep* *throat
+deep_throat
+deep throat
+deep-throat
 deggo
 dego
 demon
@@ -535,15 +535,15 @@ deth
 diaper%20daddy
 diaper%20head
 diaper* *daddy
-diaper daddy
 diaper-daddy
-diaper_daddy
-diaper+daddy
+diaper daddy
 diaperdaddy
-diaper+head
-diaper-head
+diaper+daddy
+diaper_daddy
 diaper_head
+diaper-head
 diaper head
+diaper+head
 diaper* *head
 diaperhead
 dick
@@ -560,22 +560,22 @@ dipship
 dipstick
 dirsa
 dirty%20pillows
-dirty+pillows
-dirty_pillows
-dirty-pillows
 dirtypillows
-dirty pillows
 dirty* *pillows
+dirty-pillows
+dirty pillows
+dirty_pillows
+dirty+pillows
 dix
 dlck
 dog%20style
 dogg
 dog_style
-dog-style
-dog+style
 dog* *style
 dog style
 dogstyle
+dog+style
+dog-style
 dolcett
 domination
 dominatricks
@@ -585,11 +585,11 @@ dommes
 dong
 donkey%20punch
 donkey punch
-donkey* *punch
-donkeypunch
-donkey+punch
-donkey-punch
 donkey_punch
+donkey+punch
+donkeypunch
+donkey-punch
+donkey* *punch
 donkeyribber
 doochbag
 doodoo
@@ -597,39 +597,39 @@ doofus
 dookie
 doosh
 dot%20head
+dot* *head
 dot head
+dot_head
 dot+head
 dot-head
 dothead
-dot* *head
-dot_head
 douch3
 douche
 dp%20action
+dp* *action
+dpaction
+dp_action
 dp+action
 dp action
-dp* *action
 dp-action
-dp_action
-dpaction
 dragqueen
 dragqween
 dry%20hump
+dry_hump
+dry+hump
 dry-hump
 dryhump
-dry_hump
-dry hump
-dry+hump
 dry* *hump
+dry hump
 duche
 dudette
 dune%20coon
 dune* *coon
-dune coon
-dune_coon
 dunecoon
+dune_coon
 dune-coon
 dune+coon
+dune coon
 dupa
 dvda
 dyefly
@@ -640,12 +640,12 @@ eat%20my
 eatballs
 eathairpie
 eatme
-eat_my
-eat+my
-eatmy
-eat-my
 eat* *my
+eatmy
+eat+my
 eat my
+eat_my
+eat-my
 ecchi
 ejackulate
 ejakulate
@@ -705,12 +705,12 @@ flange
 flasher
 flikker
 flipping%20the%20bird
-flipping-the-bird
-flipping_the_bird
 flipping the bird
-flipping* *the* *bird
-flipping+the+bird
+flipping-the-bird
 flippingthebird
+flipping_the_bird
+flipping+the+bird
+flipping* *the* *bird
 flogthelog
 floo
 flydie
@@ -732,21 +732,21 @@ freex
 frigg
 frotting
 fucck
-f-u-c-k
 f.u.c.k
 f+u+c+k
+f-u-c-k
+f_u_c_k
 f* *u* *c* *k
 fuck
 f u c k
-f_u_c_k
 fudgepacker
 fugly
-f u k
 f-u-k
+f+u+k
 fuk
 f* *u* *k
 f_u_k
-f+u+k
+f u k
 fungus
 futanari
 futanary
@@ -762,20 +762,20 @@ gae
 gai
 gang%20bang
 gang_bang
-gangbang
+gang* *bang
+gang bang
 gang+bang
 gang-bang
-gang bang
-gang* *bang
+gangbang
 gangsta
 ganja
 gator%20bait
-gator+bait
 gator_bait
+gator bait
 gator-bait
 gatorbait
 gator* *bait
-gator bait
+gator+bait
 geezer
 geni
 gey
@@ -786,19 +786,19 @@ gigolo
 ginzo
 gipp
 girl%20on
-girlon
 girl+on
-girl_on
-girl* *on
 girl on
+girl* *on
+girl_on
+girlon
 girl-on
 girls%20gone%20wild
-girls-gone-wild
-girls* *gone* *wild
 girlsgonewild
 girls gone wild
-girls_gone_wild
+girls* *gone* *wild
 girls+gone+wild
+girls_gone_wild
+girls-gone-wild
 givehead
 glans
 glazeddonut
@@ -810,23 +810,23 @@ god-dam
 goddam
 gokkun
 golden%20shower
-golden-shower
-goldenshower
-golden+shower
 golden* *shower
+golden-shower
 golden_shower
 golden shower
+goldenshower
+golden+shower
 gonorrehea
 gonzagas
 goo%20girl
 gooch
 goodpoop
 goo+girl
-goo_girl
+goo girl
 goo-girl
 googirl
 goo* *girl
-goo girl
+goo_girl
 gook
 gora
 goregasm
@@ -838,10 +838,10 @@ grope
 grostulation
 g-spot
 gspot
-gstring
-g string
 g+string
+g string
 g-string
+gstring
 g* *string
 g_string
 gtfo
@@ -870,46 +870,46 @@ haji
 hajji
 half%20breed
 half%20caste
-half+breed
-half breed
-half* *breed
 halfbreed
+half breed
 half-breed
 half_breed
+half+breed
+half* *breed
 half-caste
 half+caste
 halfcaste
+half* *caste
 half caste
 half_caste
-half* *caste
 hamas
 hamflap
 hand%20job
-handjob
 hand job
-hand+job
-hand-job
 hand_job
+hand+job
+handjob
+hand-job
 hand* *job
 haole
 hapa
 hard%20core
-hard+core
 hardcore
-hard_core
+hard+core
 hard-core
-hard* *core
 hard core
+hard* *core
+hard_core
 hardon
 harem
 he11
 hebe
 heeb
-h_e_l_l
-h-e-l-l
 hell
-h e l l
+h-e-l-l
 h+e+l+l
+h_e_l_l
+h e l l
 h* *e* *l* *l
 helvete
 hentai
@@ -926,12 +926,12 @@ hobag
 hodgie
 hoe
 holestuffer
+h+o+m
+h-o-m
 h* *o* *m
+h_o_m
 h o m
 hom
-h+o+m
-h_o_m
-h-o-m
 hom0
 homey
 homo
@@ -957,35 +957,35 @@ hosejob
 hoser
 hot%20carl
 hot%20chick
+hot_carl
+hot carl
 hot* *carl
 hotcarl
 hot+carl
-hot carl
 hot-carl
-hot_carl
-hot-chick
+hot chick
 hotchick
+hot+chick
+hot-chick
 hot* *chick
 hot_chick
-hot+chick
-hot chick
 hottotrot
 how%20to%20kill
 howtokill
-how-to-kill
-how to kill
-how_to_kill
 how+to+kill
+how_to_kill
 how* *to* *kill
+how to kill
+how-to-kill
 howtomurdep
 huevon
 huge%20fat
 huge* *fat
 huge_fat
-huge fat
-huge+fat
 huge-fat
+huge fat
 hugefat
+huge+fat
 hui
 hummer
 humped
@@ -1013,29 +1013,29 @@ israels
 j3rk0ff
 jack%20off
 jackhole
-jack+off
-jack_off
-jack-off
+jack off
 jackoff
 jack* *off
-jack off
+jack-off
+jack+off
+jack_off
 jacktheripper
 jail%20bait
-jail* *bait
-jail bait
-jailbait
-jail-bait
 jail_bait
+jail* *bait
 jail+bait
+jailbait
+jail bait
+jail-bait
 jap
 jebus
 jelly%20donut
 jelly_donut
-jelly+donut
 jellydonut
-jelly-donut
 jelly donut
+jelly+donut
 jelly* *donut
+jelly-donut
 jerk
 jerries
 jerry
@@ -1056,18 +1056,18 @@ jugg
 jugs
 jungle%20bunnies
 jungle%20bunny
-jungle* *bunnies
+jungle-bunnies
 jungle bunnies
+jungle* *bunnies
 jungle_bunnies
 junglebunnies
 jungle+bunnies
-jungle-bunnies
-jungle* *bunny
-jungle-bunny
 jungle bunny
 jungle_bunny
-junglebunny
+jungle-bunny
+jungle* *bunny
 jungle+bunny
+junglebunny
 junkie
 junky
 kacap
@@ -1113,34 +1113,34 @@ kwif
 kyke
 kyopo
 kyrpa
-l3i\\+ch
 l3i+ch
+l3i\\+ch
 l3itch
 labia
 lapdance
 leather%20restraint
 leather%20straight
-leather restraint
-leather_restraint
-leatherrestraint
 leather* *restraint
+leatherrestraint
 leather-restraint
 leather+restraint
-leather* *straight
-leather-straight
+leather_restraint
+leather restraint
 leather straight
 leatherstraight
 leather+straight
 leather_straight
+leather* *straight
+leather-straight
 lebos
 lech
 lemon%20party
 lemonparty
 lemon party
-lemon-party
 lemon+party
-lemon* *party
 lemon_party
+lemon* *party
+lemon-party
 leper
 lesbain
 lesbayn
@@ -1182,11 +1182,11 @@ magicwand
 mahbuno
 make%20me%20come
 makemecome
-make* *me* *come
-make+me+come
+make-me-come
 make me come
 make_me_come
-make-me-come
+make+me+come
+make* *me* *come
 mamhoon
 mams
 manhater
@@ -1205,12 +1205,12 @@ mastrabator
 masturbat
 mattressprincess
 mau%20mau
-mau* *mau
 mau-mau
-mau_mau
 mau+mau
-maumau
+mau* *mau
 mau mau
+maumau
+mau_mau
 meatbeatter
 meatrack
 menage
@@ -1220,11 +1220,11 @@ mggor
 mibun
 mick
 micro%20kini
-micro* *kini
-micro kini
-microkini
 micro_kini
+micro* *kini
 micro+kini
+microkini
+micro kini
 micro-kini
 mideast
 mierda
@@ -1234,47 +1234,47 @@ mockey
 mockie
 mocky
 mof0
-mo-fo
 mofo
+mo-fo
 moky
 molest
 moneyshot
 mong
 monkleigh
 mono%20kini
-mono_kini
 mono* *kini
-mono-kini
-monokini
 mono kini
+mono-kini
+mono_kini
 mono+kini
+monokini
 moolie
 moon%20cricket
-moon-cricket
-moon* *cricket
-moon_cricket
-moon cricket
-mooncricket
 moon+cricket
+moon* *cricket
+moon-cricket
+moon cricket
+moon_cricket
+mooncricket
 mormon
 moron
 moskal
 moslem
 mosshead
 mound%20of%20venus
+mound-of-venus
+mound_of_venus
+mound+of+venus
+moundofvenus
 mound* *of* *venus
 mound of venus
-mound-of-venus
-moundofvenus
-mound+of+venus
-mound_of_venus
 mr%20hands
-mr-hands
 mrhands
 mr+hands
-mr_hands
+mr-hands
 mr* *hands
 mr hands
+mr_hands
 muff
 muie
 mulatto
@@ -1324,34 +1324,34 @@ numbnuts
 nutten
 nymph
 o%20c%20k
+o+c+k
+o_c_k
 ock
 o c k
 o-c-k
-o+c+k
 o* *c* *k
-o_c_k
 omorashi
 one%20cup%20two%20girls
 one%20guy
 one%20jar
-onecuptwogirls
+one* *cup* *two* *girls
 one cup two girls
+onecuptwogirls
+one+cup+two+girls
 one_cup_two_girls
 one-cup-two-girls
-one+cup+two+girls
-one* *cup* *two* *girls
-one+guy
 oneguy
-one guy
 one-guy
-one_guy
+one+guy
 one* *guy
+one guy
+one_guy
 one+jar
-one-jar
-one* *jar
-onejar
 one_jar
+one* *jar
 one jar
+onejar
+one-jar
 ontherag
 orafis
 orally
@@ -1377,11 +1377,11 @@ paky
 palesimian
 pancake%20face
 pancake_face
+pancake* *face
+pancake face
 pancake-face
 pancakeface
 pancake+face
-pancake face
-pancake* *face
 panooch
 pansies
 pansy
@@ -1407,12 +1407,12 @@ penetration
 peni5
 penial
 penile
-p-e-n-i-s
-p+e+n+i+s
-penis
-p* *e* *n* *i* *s
-p_e_n_i_s
 p e n i s
+p* *e* *n* *i* *s
+p-e-n-i-s
+p_e_n_i_s
+penis
+p+e+n+i+s
 penthouse
 penus
 penuus
@@ -1436,21 +1436,21 @@ pimped
 pimper
 pimpjuic
 pinko
+p-i-s
 p+i+s
 p i s
 p* *i* *s
 p_i_s
-p-i-s
 pis
 pizda
 playboy
 playgirl
 pleasure%20chest
-pleasure chest
 pleasure_chest
-pleasure-chest
 pleasure* *chest
+pleasure-chest
 pleasure+chest
+pleasure chest
 pleasurechest
 pocha
 pocho
@@ -1460,12 +1460,12 @@ polac
 polak
 pollock
 pommie%20grant
-pommiegrant
 pommie-grant
 pommie grant
-pommie_grant
-pommie* *grant
 pommie+grant
+pommie_grant
+pommiegrant
+pommie* *grant
 pommy
 ponyplay
 poof
@@ -1475,26 +1475,26 @@ pooping
 popimp
 porch%20monkey
 porch%20monkies
-porch-monkey
+porch monkey
 porch* *monkey
 porch+monkey
 porchmonkey
 porch_monkey
-porch monkey
-porch-monkies
+porch-monkey
+porch_monkies
 porch monkies
+porch+monkies
+porch-monkies
 porchmonkies
 porch* *monkies
-porch_monkies
-porch+monkies
 porn
 pound%20town
-poundtown
-pound town
 pound_town
 pound+town
-pound-town
+pound town
 pound* *town
+poundtown
+pound-town
 pr0n
 pr1c
 pr1k
@@ -1503,12 +1503,12 @@ preteen
 pric
 prig
 prince%20albert%20piercing
-prince_albert_piercing
 prince albert piercing
-prince+albert+piercing
-prince-albert-piercing
-princealbertpiercing
 prince* *albert* *piercing
+prince_albert_piercing
+princealbertpiercing
+prince-albert-piercing
+prince+albert+piercing
 pron
 pthc
 pu55i
@@ -1527,13 +1527,13 @@ punky
 punta
 pusies
 puss
-p_u_s_s_y
 pussy
 p.u.s.s.y.
 p+u+s+s+y
-p* *u* *s* *s* *y
 p-u-s-s-y
+p_u_s_s_y
 p u s s y
+p* *u* *s* *s* *y
 pusy
 puta
 puto
@@ -1552,8 +1552,8 @@ quim
 qweers
 qweerz
 qweir
-r18
 R18
+r18
 r5e
 ra8s
 racy
@@ -1577,41 +1577,41 @@ reich
 rere
 reverse%20cowgirl
 reverse_cowgirl
-reverse+cowgirl
-reverse cowgirl
-reversecowgirl
-reverse* *cowgirl
 reverse-cowgirl
+reversecowgirl
+reverse cowgirl
+reverse+cowgirl
+reverse* *cowgirl
 rigger
 rimjaw
 rimjob
 rimming
 rosebuds
 rosy%20palm
-rosy+palm
 rosy_palm
 rosy-palm
-rosy* *palm
 rosypalm
 rosy palm
+rosy+palm
+rosy* *palm
 round%20eyes
 roundeye
 round-eyes
-round_eyes
-round eyes
-roundeyes
-round* *eyes
 round+eyes
+round* *eyes
+round_eyes
+roundeyes
+round eyes
 rumprammer
 ruski
 russki
 rusty%20trombone
-rusty-trombone
 rusty+trombone
+rusty* *trombone
+rusty trombone
+rusty-trombone
 rustytrombone
 rusty_trombone
-rusty trombone
-rusty* *trombone
 s0b
 s%20h%20i%20t
 s%20hit
@@ -1652,8 +1652,8 @@ seppo
 septics
 sex
 sh!+
-sh1t
 s-h-1-t
+sh1t
 shag
 shamedame
 sharmuta
@@ -1669,18 +1669,18 @@ shibari
 shibary
 shinola
 shipal
-s* *hit
-s+h+i+t
-s* *h* *i* *t
-s_hit
-s_h_i_t
-s-hit
-s.h.i.t.
 s h i t
+s.h.i.t.
 shit
 s-h-i-t
+s_h_i_t
 s hit
+s-hit
+s* *h* *i* *t
+s+h+i+t
 s+hit
+s* *hit
+s_hit
 shiz
 shota
 shrimping
@@ -1724,8 +1724,8 @@ snatchpatch
 snowback
 snowballing
 snuff
-s-o-b
 s.o.b.
+s-o-b
 sodom
 sooties
 sooty
@@ -1751,11 +1751,11 @@ spooge
 spread%20legs
 spreadeagle
 spread* *legs
+spread legs
+spread+legs
 spread_legs
 spread-legs
-spread+legs
 spreadlegs
-spread legs
 spunk
 sqeh
 squa
@@ -1768,21 +1768,21 @@ stiffy
 stoned
 stoner
 strap%20on
-strap on
-strap-on
 strap* *on
 strap+on
-strapon
+strap-on
 strap_on
+strap on
+strapon
 strappado
 stringer
 strip%20club
-strip_club
-strip-club
 strip* *club
-stripclub
-strip+club
 strip club
+strip+club
+strip-club
+strip_club
+stripclub
 stroke
 stroking
 stuinties
@@ -1793,24 +1793,24 @@ suckme
 suckoff
 sucks
 suicide%20girl
-suicide* *girl
-suicidegirl
 suicide+girl
-suicide_girl
-suicide girl
 suicide-girl
+suicide_girl
+suicide* *girl
+suicide girl
+suicidegirl
 suka
 sultrywoman
 sultrywomen
 swallower
 swalow
 swamp%20guinea
+swamp* *guinea
 swampguinea
 swamp_guinea
+swamp guinea
 swamp+guinea
 swamp-guinea
-swamp* *guinea
-swamp guinea
 swastika
 syphilis
 t1t
@@ -1822,41 +1822,41 @@ taboo
 tacohead
 taff
 take%20off%20your
-take_off_your
-take-off-your
-take* *off* *your
-take+off+your
-take off your
 takeoffyour
+take off your
+take-off-your
+take+off+your
+take_off_your
+take* *off* *your
 tankini
 tar%20babies
 tar%20baby
-tar_babies
-tarbabies
 tar+babies
-tar babies
-tar-babies
 tar* *babies
-tar-baby
-tar+baby
-tar baby
-tar* *baby
-tar_baby
+tar babies
+tarbabies
+tar_babies
+tar-babies
 tarbaby
+tar+baby
+tar-baby
+tar* *baby
+tar baby
+tar_baby
 taste%20my
+taste* *my
+taste-my
 tastemy
 taste my
-taste+my
-taste* *my
 taste_my
-taste-my
+taste+my
 tawdry
-tback
-t+back
-t-back
-t* *back
-t_back
 t back
+t* *back
+t-back
+t_back
+t+back
+tback
 teat
 teets
 teez
@@ -1865,12 +1865,12 @@ terror
 teste
 testic
 testis
-t front
-t_front
-t* *front
-t-front
 t+front
 tfront
+t_front
+t front
+t-front
+t* *front
 thicklip
 thirdeye
 thirdleg
@@ -1880,47 +1880,47 @@ threeway
 throating
 thumbzilla
 tied%20up
-tied up
-tied_up
-tied* *up
 tied+up
+tied* *up
+tied up
 tied-up
+tied_up
 tiedup
 tinkle
 t-i-t
-t_i_t
-t* *i* *t
-t i t
 t+i+t
 tit
+t* *i* *t
+t_i_t
+t i t
 to%20murder
 toke
-to+murder
-to* *murder
-to_murder
-to murder
 to-murder
 tomurder
+to_murder
+to+murder
+to* *murder
+to murder
 tongethruster
 tongue%20in%20a
-tongueina
 tongue+in+a
-tongue in a
 tongue-in-a
-tongue_in_a
+tongue in a
 tongue* *in* *a
+tongue_in_a
+tongueina
 tonguethrust
 toots
 topless
 tortur
 tosser
 towel%20head
-towel+head
-towelhead
-towel_head
 towel-head
-towel* *head
 towel head
+towel_head
+towelhead
+towel* *head
+towel+head
 trailertrash
 tramp
 trannie
@@ -1932,26 +1932,26 @@ triplex
 trois
 trojan
 trots
-tstring
 t+string
 t* *string
-t string
-t_string
 t-string
+tstring
+t_string
+t string
 tub%20girl
+tub+girl
 tubgirl
 tub_girl
 tub* *girl
-tub-girl
 tub girl
-tub+girl
+tub-girl
 tunneloflove
 turd%20burgler
+turd burgler
+turd_burgler
 turdburgler
 turd-burgler
-turd_burgler
 turd+burgler
-turd burgler
 turd* *burgler
 turnon
 tush
@@ -1959,30 +1959,30 @@ tw4t
 twat
 twink
 two%20girls%20one%20cup
-two+girls+one+cup
 two_girls_one_cup
-two* *girls* *one* *cup
-two girls one cup
+two+girls+one+cup
 twogirlsonecup
 two-girls-one-cup
+two* *girls* *one* *cup
+two girls one cup
 twunt
 udge%20packer
-udge packer
 udge+packer
-udgepacker
 udge-packer
 udge* *packer
 udge_packer
+udgepacker
+udge packer
 ukrop
 undressing
 upskirt
 urethra%20play
-urethraplay
-urethra-play
+urethra* *play
 urethra+play
 urethra_play
-urethra* *play
+urethra-play
 urethra play
+urethraplay
 urophilia
 usama
 ussys
@@ -1994,34 +1994,34 @@ v%20string
 v4gra
 va1jina
 vag
+v-a-g-i-n-a
+v+a+g+i+n+a
 v* *a* *g* *i* *n* *a
 vagina
-v_a_g_i_n_a
 v a g i n a
-v+a+g+i+n+a
-v-a-g-i-n-a
+v_a_g_i_n_a
 vaj1na
 vajina
 va-j-j
 valium
 venus%20mound
-venus mound
-venus* *mound
-venus+mound
-venusmound
 venus-mound
+venus* *mound
+venus mound
+venusmound
 venus_mound
+venus+mound
 vgra
 viagra
 vibr
 vigra
 violet%20wand
-violetwand
-violet-wand
-violet wand
 violet+wand
+violet-wand
 violet_wand
 violet* *wand
+violet wand
+violetwand
 virgin
 vittu
 vixen
@@ -2031,11 +2031,11 @@ vomit
 vorarephilia
 voyeurweb
 voyuer
+v+string
 v* *string
 v-string
-v+string
-v string
 vstring
+v string
 v_string
 vullva
 vulva
@@ -2054,12 +2054,12 @@ welcher
 wench
 wet%20dream
 wetb
-wetdream
-wet-dream
-wet+dream
-wet dream
-wet* *dream
 wet_dream
+wet+dream
+wet* *dream
+wetdream
+wet dream
+wet-dream
 wetspot
 whacker
 whash
@@ -2076,19 +2076,19 @@ wog
 woose
 wop
 wrapping%20men
-wrappingmen
-wrapping+men
+wrapping men
 wrapping_men
 wrapping-men
 wrapping* *men
-wrapping men
+wrapping+men
+wrappingmen
 wrinkled%20starfish
 wrinkled starfish
-wrinkled+starfish
 wrinkled_starfish
+wrinkled-starfish
+wrinkled+starfish
 wrinkledstarfish
 wrinkled* *starfish
-wrinkled-starfish
 wtf
 wuss
 wuzzie
@@ -2104,12 +2104,12 @@ yeasty
 yed
 yellow%20showers
 yellowman
-yellowshowers
-yellow_showers
-yellow showers
-yellow* *showers
-yellow+showers
 yellow-showers
+yellow+showers
+yellow_showers
+yellow* *showers
+yellowshowers
+yellow showers
 yid
 yiffy
 yobbo
