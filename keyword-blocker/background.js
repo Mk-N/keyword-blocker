@@ -9,6 +9,45 @@ async function loadKeywordsAndNotificationState() {
 	});
 }
 
+// Simulate lookahead and lookbehind manually
+function matchesPattern(url, pattern) {
+	// Check for negative lookahead
+	if (pattern.includes('(?!')) {
+		const parts = pattern.split('(?!');
+		const before = parts[0];
+		const negativeLookahead = parts[1].slice(0, -1); // remove closing )
+		return url.includes(before) && !url.includes(before + negativeLookahead);
+	}
+
+	// Check for positive lookahead
+	if (pattern.includes('(?=')) {
+		const parts = pattern.split('(?=');
+		const before = parts[0];
+		const positiveLookahead = parts[1].slice(0, -1); // remove closing )
+		return url.includes(before) && url.includes(before + positiveLookahead);
+	}
+
+	// Check for negative lookbehind
+	if (pattern.includes('(?<!')) {
+		const parts = pattern.split('(?<!');
+		const after = parts[1];
+		const negativeLookbehind = parts[0].slice(0, -1); // remove opening (
+		return url.includes(after) && !url.includes(negativeLookbehind + after);
+	}
+
+	// Check for positive lookbehind
+	if (pattern.includes('(?<=(')) {
+		const parts = pattern.split('(?<=(');
+		const after = parts[1];
+		const positiveLookbehind = parts[0].slice(0, -1); // remove opening (
+		return url.includes(after) && url.includes(positiveLookbehind + after);
+	}
+
+	// Default regex matching
+	const regex = new RegExp(pattern);
+	return regex.test(url);
+}
+
 // Update the blocking rules based on the loaded keywords
 async function updateBlockingRules() {
 	const { keywords } = await loadKeywordsAndNotificationState();
@@ -41,8 +80,7 @@ async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
 
 	for (let keyword of keywords) {
-		const regex = new RegExp(keyword);
-		if (regex.test(details.url) && notificationEnabled) {
+		if (matchesPattern(details.url, keyword) && notificationEnabled) {
 			const notificationOptions = {
 				type: 'basic',
 				iconUrl: 'icon.png',
