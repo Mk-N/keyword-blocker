@@ -17,7 +17,7 @@ async function updateBlockingRules() {
 		id: index + 1,
 		priority: 1,
 		action: { type: 'block' },
-		condition: { urlFilter: '.*', regexFilter: keyword, resourceTypes: ['main_frame'] }
+		condition: { regexFilter: keyword, resourceTypes: ['main_frame'] }
 	}));
 
 	// Remove old rules and add new ones
@@ -28,7 +28,7 @@ async function updateBlockingRules() {
 			addRules: rules
 		}, () => {
 			if (chrome.runtime.lastError) {
-				console.error(chrome.runtime.lastError);
+				console.error('Error updating dynamic rules:', chrome.runtime.lastError.message);
 			} else {
 				console.log("Rules updated successfully with regex support");
 			}
