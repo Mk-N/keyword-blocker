@@ -9,43 +9,105 @@ async function loadKeywordsAndNotificationState() {
 	});
 }
 
-// Simulate lookahead and lookbehind manually
-function matchesPattern(url, pattern) {
-	// Check for negative lookahead
-	if (pattern.includes('(?!')) {
-		const parts = pattern.split('(?!');
-		const before = parts[0];
-		const negativeLookahead = parts[1].slice(0, -1); // remove closing )
-		return url.includes(before) && !url.includes(before + negativeLookahead);
+// Function to perform regex matching with support for recursive handling of lookaheads
+function regex_match(url, regex_patterns) {
+	for (let i = 0; i < regex_patterns.length; i++) {
+		let pattern = regex_patterns[i];
+
+		// Handle positive lookahead (?=...)
+		if (pattern.includes('(?=')) {
+			let parts = pattern.split(/(?=\(\?=[^)]+\))/);
+			let mainPattern = parts[0];
+			let lookaheadPatterns = parts.slice(1).map(part => part.slice(3, -1)); // Remove leading '(?=' and trailing ')'
+
+			if (!url.match(new RegExp(mainPattern))) {
+				continue; // Skip if main pattern doesn't match
+			}
+
+			let remainingUrl = url;
+			let lookaheadMatched = true;
+
+			for (let j = 0; j < lookaheadPatterns.length; j++) {
+				let lookaheadPattern = lookaheadPatterns[j];
+
+				// Handle recursive call for each lookahead
+				if (!recursiveRegexMatch(remainingUrl, lookaheadPattern)) {
+					lookaheadMatched = false;
+					break; // Skip if any lookahead pattern doesn't match
+				}
+
+				// Update remaining URL after matching lookahead
+				remainingUrl = remainingUrl.substring(remainingUrl.search(new RegExp(lookaheadPattern)) + lookaheadPattern.length);
+			}
+
+			if (lookaheadMatched) {
+				return true; // All patterns matched, block the URL
+			}
+		}
+
+		// Handle negative lookahead (?!...)
+		else if (pattern.includes('(?!')) {
+			let parts = pattern.split(/(?=\(\?![^)]+\))/);
+			let mainPattern = parts[0];
+			let lookaheadPatterns = parts.slice(1).map(part => part.slice(3, -1)); // Remove leading '(?!' and trailing ')'
+
+			if (!url.match(new RegExp(mainPattern))) {
+				continue; // Skip if main pattern doesn't match
+			}
+
+			let remainingUrl = url;
+			let lookaheadMatched = true;
+
+			for (let j = 0; j < lookaheadPatterns.length; j++) {
+				let lookaheadPattern = lookaheadPatterns[j];
+
+				// Handle recursive call for each lookahead
+				if (recursiveRegexMatch(remainingUrl, lookaheadPattern)) {
+					lookaheadMatched = false;
+					break; // Skip if any negative lookahead pattern matches
+				}
+
+				// Update remaining URL after matching lookahead
+				remainingUrl = remainingUrl.substring(remainingUrl.search(new RegExp(lookaheadPattern)) + lookaheadPattern.length);
+			}
+
+			if (lookaheadMatched) {
+				return true; // Main pattern matched and no negative lookahead pattern matched, block the URL
+			}
+		}
+
+		// Regular pattern matching without lookaheads
+		else {
+			if (url.match(new RegExp(pattern))) {
+				return true; // Match found, block the URL
+			}
+		}
 	}
 
-	// Check for positive lookahead
-	if (pattern.includes('(?=')) {
-		const parts = pattern.split('(?=');
-		const before = parts[0];
-		const positiveLookahead = parts[1].slice(0, -1); // remove closing )
-		return url.includes(before) && url.includes(before + positiveLookahead);
+	return false; // No match found, allow the URL
+}
+
+// Helper function for recursive regex matching
+function recursiveRegexMatch(url, pattern) {
+	if (!pattern.includes('(?=')) {
+		return url.match(new RegExp(pattern));
 	}
 
-	// Check for negative lookbehind
-	if (pattern.includes('(?<!')) {
-		const parts = pattern.split('(?<!');
-		const after = parts[1];
-		const negativeLookbehind = parts[0].slice(0, -1); // remove opening (
-		return url.includes(after) && !url.includes(negativeLookbehind + after);
+	let parts = pattern.split(/(?=\(\?=[^)]+\))/);
+	let mainPattern = parts[0];
+	let lookaheadPattern = parts[1].slice(3, -1); // Remove leading '(?=' and trailing ')'
+
+	let remainingUrl = url;
+
+	if (!url.match(new RegExp(mainPattern))) {
+		return false; // Skip if main pattern doesn't match
 	}
 
-	// Check for positive lookbehind
-	if (pattern.includes('(?<=(')) {
-		const parts = pattern.split('(?<=(');
-		const after = parts[1];
-		const positiveLookbehind = parts[0].slice(0, -1); // remove opening (
-		return url.includes(after) && url.includes(positiveLookbehind + after);
-	}
+	// Update remaining URL after matching main pattern
+	remainingUrl = remainingUrl.substring(remainingUrl.search(new RegExp(mainPattern)) + mainPattern.length);
 
-	// Default regex matching
-	const regex = new RegExp(pattern);
-	return regex.test(url);
+	// Handle recursive call for lookahead
+	return recursiveRegexMatch(remainingUrl, lookaheadPattern);
 }
 
 // Update the blocking rules based on the loaded keywords
@@ -80,7 +142,7 @@ async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
 
 	for (let keyword of keywords) {
-		if (matchesPattern(details.url, keyword) && notificationEnabled) {
+		if (regex_match(details.url, [keyword]) && notificationEnabled) {
 			const notificationOptions = {
 				type: 'basic',
 				iconUrl: 'icon.png',
