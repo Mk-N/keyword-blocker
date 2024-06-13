@@ -1,3 +1,5 @@
+importScripts('regex.js'); // Ensure this path is correct relative to your background.js
+
 // Load keywords and notification state from storage
 async function loadKeywordsAndNotificationState() {
 	return new Promise((resolve) => {
@@ -9,55 +11,45 @@ async function loadKeywordsAndNotificationState() {
 	});
 }
 
-// Simulate lookahead and lookbehind manually
+// Validate regex pattern using the regex library
+function isValidRegex(pattern) {
+	try {
+		new regex(pattern);
+		return true;
+	} catch (e) {
+		console.error(`Invalid regex pattern: ${pattern}`, e);
+		return false;
+	}
+}
+
+// Check URL against the pattern using the regex library
 function matchesPattern(url, pattern) {
-	// Check for negative lookahead
-	if (pattern.includes('(?!')) {
-		const parts = pattern.split('(?!');
-		const before = parts[0];
-		const negativeLookahead = parts[1].slice(0, -1); // remove closing )
-		return url.includes(before) && !url.includes(before + negativeLookahead);
+	try {
+		const regexObj = new regex(pattern);
+		return regexObj.test(url);
+	} catch (e) {
+		console.error(`Invalid regex pattern: ${pattern}`, e);
+		return false;
 	}
-
-	// Check for positive lookahead
-	if (pattern.includes('(?=')) {
-		const parts = pattern.split('(?=');
-		const before = parts[0];
-		const positiveLookahead = parts[1].slice(0, -1); // remove closing )
-		return url.includes(before) && url.includes(before + positiveLookahead);
-	}
-
-	// Check for negative lookbehind
-	if (pattern.includes('(?<!')) {
-		const parts = pattern.split('(?<!');
-		const after = parts[1];
-		const negativeLookbehind = parts[0].slice(0, -1); // remove opening (
-		return url.includes(after) && !url.includes(negativeLookbehind + after);
-	}
-
-	// Check for positive lookbehind
-	if (pattern.includes('(?<=(')) {
-		const parts = pattern.split('(?<=(');
-		const after = parts[1];
-		const positiveLookbehind = parts[0].slice(0, -1); // remove opening (
-		return url.includes(after) && url.includes(positiveLookbehind + after);
-	}
-
-	// Default regex matching
-	const regex = new RegExp(pattern);
-	return regex.test(url);
 }
 
 // Update the blocking rules based on the loaded keywords
 async function updateBlockingRules() {
 	const { keywords } = await loadKeywordsAndNotificationState();
 
-	const rules = keywords.map((keyword, index) => ({
-		id: index + 1,
-		priority: 1,
-		action: { type: 'block' },
-		condition: { regexFilter: keyword, resourceTypes: ['main_frame'] }
-	}));
+	const rules = keywords.map((keyword, index) => {
+		if (isValidRegex(keyword)) {
+			return {
+				id: index + 1,
+				priority: 1,
+				action: { type: 'block' },
+				condition: { urlFilter: '*', resourceTypes: ['main_frame'] }
+			};
+		}
+		return null;
+	}).filter(rule => rule !== null);
+
+	console.log("Generated rules:", rules);
 
 	// Remove old rules and add new ones
 	chrome.declarativeNetRequest.getDynamicRules(existingRules => {
@@ -105,9 +97,9 @@ chrome.storage.local.get(null, function (items) {
 
 // Listen for storage changes and update rules
 chrome.storage.onChanged.addListener((changes, area) => {
-	if (area === 'local' && (changes.keywords || changes.notificationEnabled)) {
-		updateBlockingRules();
-	}
+	if (area === 'local' && (changes.keywords or changes.notificationEnabled)) {
+	updateBlockingRules();
+}
 });
 
 // Service worker events for initialization
