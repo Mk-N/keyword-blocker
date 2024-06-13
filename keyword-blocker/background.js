@@ -92,67 +92,6 @@ function isValidRegexPattern(pattern) {
 	}
 }
 
-// Helper function for recursive regex matching
-function recursiveRegexMatch(url, pattern) {
-	if (!pattern.includes('(?=')) {
-		return url.match(new RegExp(pattern));
-	}
-
-	let parts = pattern.split(/(?=\(\?=[^)]+\))/);
-	let mainPattern = parts[0];
-	let lookaheadPattern = parts[1].slice(3, -1); // Remove leading '(?=' and trailing ')'
-
-	let remainingUrl = url;
-
-	if (!url.match(new RegExp(mainPattern))) {
-		return false; // Skip if main pattern doesn't match
-	}
-
-	// Update remaining URL after matching main pattern
-	remainingUrl = remainingUrl.substring(remainingUrl.search(new RegExp(mainPattern)) + mainPattern.length);
-
-	// Handle recursive call for lookahead
-	return recursiveRegexMatch(remainingUrl, lookaheadPattern);
-}
-
-// Update the blocking rules based on the loaded keywords
-async function updateBlockingRules() {
-	const { keywords } = await loadKeywordsAndNotificationState();
-
-	const rules = keywords.map((keyword, index) => {
-		if (!isValidRegexPattern(keyword)) {
-			return null; // Skip invalid patterns
-		}
-
-		return {
-			id: index + 1,
-			priority: 1,
-			action: { type: 'block' },
-			condition: { regexFilter: keyword, resourceTypes: ['main_frame'] }
-		};
-	}).filter(rule => rule !== null);
-
-	// Remove old rules and add new ones
-	chrome.declarativeNetRequest.getDynamicRules(existingRules => {
-		let removeRuleIds = existingRules.map(rule => rule.id);
-		chrome.declarativeNetRequest.updateDynamicRules({
-			removeRuleIds: removeRuleIds,
-			addRules: rules
-		}, () => {
-			if (chrome.runtime.lastError) {
-				if (chrome.runtime.lastError.message.includes('incorrect value for the "regexFilter" key')) {
-					console.warn('Invalid regexFilter value encountered, skipping rule:', chrome.runtime.lastError.message);
-					// Optionally handle or log the error
-				} else {
-					console.error('Error updating dynamic rules:', chrome.runtime.lastError.message);
-				}
-			} else {
-				console.log("Rules updated successfully with regex support");
-			}
-		});
-	});
-}
-
 // Function to notify when a page is blocked
 async function handleBlockedRequest(details) {
 	const { keywords, notificationEnabled } = await loadKeywordsAndNotificationState();
@@ -168,6 +107,13 @@ async function handleBlockedRequest(details) {
 			chrome.notifications.create(null, notificationOptions);
 			break;
 		}
+	}
+
+	// Dynamically block or allow based on regex patterns
+	if (regex_match(details.url, keywords)) {
+		return { cancel: true }; // Block the request
+	} else {
+		return { cancel: false }; // Allow the request
 	}
 }
 
