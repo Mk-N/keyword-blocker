@@ -1,18 +1,12 @@
-// Load keywords and notification state from storage
-async function loadKeywordsAndNotificationState() {
-	return new Promise((resolve) => {
-		chrome.storage.local.get(['keywords', 'notificationEnabled'], (result) => {
-			const keywords = result.keywords || [];
-			const notificationEnabled = result.notificationEnabled || false;
-			resolve({ keywords, notificationEnabled });
-		});
-	});
-}
-
 // Function to perform regex matching with support for recursive handling of lookaheads
 function regex_match(url, regex_patterns) {
 	for (let i = 0; i < regex_patterns.length; i++) {
 		let pattern = regex_patterns[i];
+
+		// Validate regex pattern before proceeding
+		if (!isValidRegexPattern(pattern)) {
+			continue; // Skip invalid patterns
+		}
 
 		// Handle positive lookahead (?=...)
 		if (pattern.includes('(?=')) {
@@ -87,6 +81,17 @@ function regex_match(url, regex_patterns) {
 	return false; // No match found, allow the URL
 }
 
+// Helper function to validate regex patterns
+function isValidRegexPattern(pattern) {
+	try {
+		new RegExp(pattern);
+		return true;
+	} catch (error) {
+		console.error('Invalid regex pattern:', pattern);
+		return false;
+	}
+}
+
 // Helper function for recursive regex matching
 function recursiveRegexMatch(url, pattern) {
 	if (!pattern.includes('(?=')) {
@@ -114,12 +119,18 @@ function recursiveRegexMatch(url, pattern) {
 async function updateBlockingRules() {
 	const { keywords } = await loadKeywordsAndNotificationState();
 
-	const rules = keywords.map((keyword, index) => ({
-		id: index + 1,
-		priority: 1,
-		action: { type: 'block' },
-		condition: { regexFilter: keyword, resourceTypes: ['main_frame'] }
-	}));
+	const rules = keywords.map((keyword, index) => {
+		if (!isValidRegexPattern(keyword)) {
+			return null; // Skip invalid patterns
+		}
+
+		return {
+			id: index + 1,
+			priority: 1,
+			action: { type: 'block' },
+			condition: { regexFilter: keyword, resourceTypes: ['main_frame'] }
+		};
+	}).filter(rule => rule !== null);
 
 	// Remove old rules and add new ones
 	chrome.declarativeNetRequest.getDynamicRules(existingRules => {
@@ -129,7 +140,12 @@ async function updateBlockingRules() {
 			addRules: rules
 		}, () => {
 			if (chrome.runtime.lastError) {
-				console.error('Error updating dynamic rules:', chrome.runtime.lastError.message);
+				if (chrome.runtime.lastError.message.includes('incorrect value for the "regexFilter" key')) {
+					console.warn('Invalid regexFilter value encountered, skipping rule:', chrome.runtime.lastError.message);
+					// Optionally handle or log the error
+				} else {
+					console.error('Error updating dynamic rules:', chrome.runtime.lastError.message);
+				}
 			} else {
 				console.log("Rules updated successfully with regex support");
 			}
