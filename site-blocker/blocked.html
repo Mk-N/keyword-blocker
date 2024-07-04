@@ -12,17 +12,11 @@
   </head>
   <body>
     <h1>This URL has been blocked by:</h1>
-    <div id="keywords"></div>
+    <p id="keyword"></p>
     <script>
       const urlParams = new URLSearchParams(window.location.search);
-      const keywords = urlParams.get("keywords").split(",");
-
-      const keywordsDiv = document.getElementById("keywords");
-      keywords.forEach((keyword) => {
-        const p = document.createElement("p");
-        p.textContent = keyword;
-        keywordsDiv.appendChild(p);
-      });
+      const keyword = urlParams.get("keyword");
+      document.getElementById("keyword").textContent = keyword;
     </script>
   </body>
 </html>
