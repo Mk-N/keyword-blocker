@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blocked</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>This URL has been blocked by:</h1>
+    <p id="keyword"></p>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const keyword = urlParams.get("keyword");
+      document.getElementById("keyword").textContent = keyword;
+    </script>
+  </body>
+</html>
