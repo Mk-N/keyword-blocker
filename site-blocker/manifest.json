@@ -3,13 +3,7 @@
   "name": "Regex Site Blocker",
   "version": "1.0",
   "description": "Blocks sites based on regex keywords",
-  "permissions": [
-    "storage",
-    "tabs",
-    "webRequest",
-    "webRequestBlocking",
-    "activeTab"
-  ],
+  "permissions": ["storage", "tabs", "declarativeNetRequest"],
   "background": {
     "service_worker": "background.js"
   },
@@ -26,5 +20,14 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "host_permissions": ["<all_urls>"]
+  "host_permissions": ["<all_urls>"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
 }
