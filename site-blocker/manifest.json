@@ -1,32 +1,32 @@
 {
 	"manifest_version": 3,
-	"name": "Keyword Blocker",
+	"name": "Regex Site Blocker",
 	"version": "1.0",
-	"description": "Blocks websites containing banned keywords in the URL, with wildcard support and notifications",
+	"description": "Blocks sites based on regex keywords",
 	"permissions": [
-		"declarativeNetRequest",
-		"declarativeNetRequestWithHostAccess",
 		"storage",
-		"scripting"
+		"tabs",
+		"webRequest",
+		"webRequestBlocking",
+		"activeTab"
 	],
 	"background": {
 		"service_worker": "background.js"
 	},
-	"content_scripts": [
-		{
-			"matches": [
-				"<all_urls>"
-			],
-			"js": [
-				"contentScript.js"
-			]
-		}
-	],
 	"action": {
 		"default_popup": "popup.html",
-		"default_icon": "icon.png"
+		"default_icon": {
+			"16": "icons/icon16.png",
+			"48": "icons/icon48.png",
+			"128": "icons/icon128.png"
+		}
 	},
 	"icons": {
-		"48": "icon.png"
-	}
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"host_permissions": [
+		"<all_urls>"
+	]
 }
