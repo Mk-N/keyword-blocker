@@ -43,4 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsText(file);
     }
   });
+
+  // Adjust textarea size to fit the window
+  function adjustTextareaSize() {
+    const height =
+      window.innerHeight -
+      saveButton.offsetHeight -
+      fileInput.offsetHeight -
+      50;
+    keywordsArea.style.height = height + "px";
+  }
+
+  window.onresize = adjustTextareaSize;
+  adjustTextareaSize();
 });
