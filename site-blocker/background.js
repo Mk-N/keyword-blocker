@@ -8,6 +8,14 @@ chrome.runtime.onStartup.addListener(() => {
   loadKeywords();
 });
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "updateKeywords") {
+    regexKeywords = message.keywords;
+    optimizeKeywords();
+    sendResponse({ status: "updated" });
+  }
+});
+
 chrome.action.onClicked.addListener((tab) => {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
@@ -34,12 +42,10 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 
 function loadKeywords() {
-  fetch(chrome.runtime.getURL("regex_keywords.txt"))
-    .then((response) => response.text())
-    .then((text) => {
-      regexKeywords = text.split("\n").filter(Boolean);
-      optimizeKeywords();
-    });
+  chrome.storage.local.get(["storedKeywords"], (result) => {
+    regexKeywords = result.storedKeywords || [];
+    optimizeKeywords();
+  });
 }
 
 function optimizeKeywords() {

@@ -1,30 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-	const textarea = document.getElementById('keywords');
-	const saveButton = document.getElementById('save');
-	const resetButton = document.getElementById('reset');
-	const notificationToggle = document.getElementById('notificationToggle');
+document.addEventListener("DOMContentLoaded", function () {
+  const saveButton = document.getElementById("save-keywords");
+  const keywordsArea = document.getElementById("keywords");
 
-	// Load keywords and notification state from local storage
-	chrome.storage.local.get(['keywords', 'notificationEnabled'], result => {
-		textarea.value = result.keywords ? result.keywords.join('\n') : '';
-		notificationToggle.checked = result.notificationEnabled || false;
-	});
+  // Load stored keywords when the popup is opened
+  chrome.storage.local.get(["storedKeywords"], function (result) {
+    const storedKeywords = result.storedKeywords || [];
+    keywordsArea.value = storedKeywords.join("\n");
+  });
 
-	// Save keywords and notification toggle state
-	saveButton.addEventListener('click', () => {
-		const keywords = textarea.value.trim().split('\n').map(keyword => keyword.trim()).filter(keyword => keyword);
-		const notificationEnabled = notificationToggle.checked;
-		chrome.storage.local.set({ keywords, notificationEnabled }, () => {
-			alert('Keywords and notification toggle saved locally!');
-		});
-	});
+  // Save new keywords when the save button is clicked
+  saveButton.addEventListener("click", function () {
+    const newKeywords = keywordsArea.value.split("\n").filter(Boolean);
+    chrome.storage.local.set({ storedKeywords: newKeywords }, function () {
+      alert("Keywords saved!");
+      updateBackgroundKeywords();
+    });
+  });
 
-	// Reset keywords and notification toggle state to default
-	resetButton.addEventListener('click', () => {
-		textarea.value = '';
-		notificationToggle.checked = false;
-		chrome.storage.local.remove(['keywords', 'notificationEnabled'], () => {
-			alert('Keywords and notification toggle reset to default!');
-		});
-	});
+  // Update background script with new keywords
+  function updateBackgroundKeywords() {
+    chrome.storage.local.get(["storedKeywords"], function (result) {
+      chrome.runtime.sendMessage({
+        action: "updateKeywords",
+        keywords: result.storedKeywords,
+      });
+    });
+  }
 });
