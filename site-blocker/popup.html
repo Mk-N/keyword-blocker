@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<title>Keyword Blocker</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-		}
-	</style>
-</head>
-
-<body>
-	<h1>Keyword Blocker</h1>
-	<label for="keywords">Banned Keywords (one per line, wildcards supported):</label>
-	<textarea id="keywords" rows="10" cols="50"></textarea>
-	<br>
-	<label for="notificationToggle">Enable Notifications:</label>
-	<input type="checkbox" id="notificationToggle">
-	<br>
-	<button id="save">Save</button>
-	<button id="reset">Reset</button>
-	<script src="popup.js"></script>
-</body>
-
+  <head>
+    <title>Regex Site Blocker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Regex Site Blocker</h1>
+    <textarea
+      id="keywords"
+      rows="10"
+      cols="30"
+      placeholder="Enter keywords here..."
+    ></textarea
+    ><br />
+    <button id="save-keywords">Save Keywords</button>
+    <script src="popup.js"></script>
+  </body>
 </html>
