@@ -1,6 +1,3 @@
-import { getKeywords, setKeywords } from "../storage.js";
-import { optimizeKeywords } from "../regexUtils.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   const keywordInput = document.getElementById("keywordInput");
   const fileInput = document.getElementById("fileInput");
@@ -71,5 +68,42 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.width = "500px";
       document.body.style.height = "300px";
     }
+  }
+
+  // Storage functions directly integrated
+  function getKeywords() {
+    return new Promise((resolve) => {
+      chrome.storage.local.get(["keywords"], (result) => {
+        resolve(result.keywords || []);
+      });
+    });
+  }
+
+  function setKeywords(keywords) {
+    return new Promise((resolve) => {
+      chrome.storage.local.set({ keywords }, () => {
+        resolve();
+      });
+    });
+  }
+
+  // Regex optimization function directly integrated
+  function optimizeKeywords(keywords) {
+    let optimized = [];
+
+    for (let i = 0; i < keywords.length; i++) {
+      let isRedundant = false;
+      for (let j = 0; j < keywords.length; j++) {
+        if (i !== j && keywords[j].includes(keywords[i])) {
+          isRedundant = true;
+          break;
+        }
+      }
+      if (!isRedundant) {
+        optimized.push(keywords[i]);
+      }
+    }
+
+    return optimized;
   }
 });
