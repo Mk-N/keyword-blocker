@@ -9,8 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   saveBtn.addEventListener("click", saveKeywords);
   fileInput.addEventListener("change", handleFileUpload);
+  window.addEventListener("resize", adjustPopupSize);
 
   loadKeywords();
+  adjustPopupSize(); // Adjust size on load
 
   function loadKeywords() {
     getKeywords().then((keywords) => {
@@ -59,5 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
         loadKeywords();
       });
     });
+  }
+
+  function adjustPopupSize() {
+    if (window.innerHeight > window.innerWidth) {
+      document.body.style.width = "300px";
+      document.body.style.height = "500px";
+    } else {
+      document.body.style.width = "500px";
+      document.body.style.height = "300px";
+    }
   }
 });
