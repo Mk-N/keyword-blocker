@@ -37,16 +37,7 @@ function updateBlockingRules() {
     id: id + 1,
     priority: 1,
     action: {
-      type: "redirect",
-      redirect: {
-        url: chrome.runtime.getURL(
-          `blocked.html?keywords=${encodeURIComponent(
-            JSON.stringify(
-              regexKeywords.filter((r) => new RegExp(r, "i").test(regex))
-            )
-          )}`
-        ),
-      },
+      type: "block",
     },
     condition: {
       urlFilter: regex,
