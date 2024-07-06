@@ -13,16 +13,6 @@
   <body>
     <h1>This URL has been blocked by:</h1>
     <div id="keywords"></div>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const keywords = urlParams.get("keywords").split(",");
-
-      const keywordsDiv = document.getElementById("keywords");
-      keywords.forEach((keyword) => {
-        const p = document.createElement("p");
-        p.textContent = keyword;
-        keywordsDiv.appendChild(p);
-      });
-    </script>
+    <script src="blocked.js"></script>
   </body>
 </html>

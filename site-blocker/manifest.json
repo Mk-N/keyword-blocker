@@ -3,7 +3,7 @@
   "name": "Regex Site Blocker",
   "version": "1.0",
   "description": "Blocks sites based on regex keywords",
-  "permissions": ["storage", "tabs", "declarativeNetRequest"],
+  "permissions": ["storage", "declarativeNetRequest"],
   "background": {
     "service_worker": "background.js"
   },
