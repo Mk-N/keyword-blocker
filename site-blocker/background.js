@@ -1,5 +1,3 @@
-let regexKeywords = [];
-
 chrome.runtime.onInstalled.addListener(() => {
   loadKeywords();
 });
@@ -10,43 +8,31 @@ chrome.runtime.onStartup.addListener(() => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "updateKeywords") {
-    regexKeywords = message.keywords;
-    optimizeKeywords();
-    updateBlockingRules();
+    updateBlockingRules(message.keywords);
     sendResponse({ status: "updated" });
   }
 });
 
 function loadKeywords() {
   chrome.storage.local.get(["storedKeywords"], (result) => {
-    regexKeywords = result.storedKeywords || [];
-    optimizeKeywords();
-    updateBlockingRules();
+    const keywords = result.storedKeywords || [];
+    updateBlockingRules(keywords);
   });
 }
 
-function optimizeKeywords() {
-  // Example optimization: remove substrings that are already matched by other keywords
-  regexKeywords = regexKeywords.filter((regex, index, arr) => {
-    return !arr.some((r, i) => i !== index && r.includes(regex));
-  });
-}
-
-function updateBlockingRules() {
-  const rules = regexKeywords.map((regex, id) => ({
-    id: id + 1,
-    priority: 1,
-    action: {
-      type: "block",
-    },
-    condition: {
-      urlFilter: regex,
-      resourceTypes: ["main_frame"],
-    },
-  }));
-
+function updateBlockingRules(keywords) {
   chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: regexKeywords.map((_, id) => id + 1),
-    addRules: rules,
+    removeRuleIds: keywords.map((_, id) => id + 1),
+    addRules: keywords.map((keyword, id) => ({
+      id: id + 1,
+      priority: 1,
+      action: {
+        type: "block",
+      },
+      condition: {
+        urlFilter: keyword,
+        resourceTypes: ["main_frame"],
+      },
+    })),
   });
 }
