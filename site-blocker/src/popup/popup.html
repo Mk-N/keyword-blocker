@@ -6,13 +6,15 @@
   </head>
   <body>
     <h1>Site Blocker Settings</h1>
-    <textarea
-      id="keywordInput"
-      placeholder="Enter regex keywords, one per line"
-    ></textarea>
-    <input type="file" id="fileInput" accept=".txt" />
-    <button id="saveBtn">Save</button>
-    <ul id="keywordList"></ul>
+    <div id="container">
+      <textarea
+        id="keywordInput"
+        placeholder="Enter regex keywords, one per line"
+      ></textarea>
+      <input type="file" id="fileInput" accept=".txt" />
+      <button id="saveBtn">Save</button>
+      <ul id="keywordList"></ul>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>
