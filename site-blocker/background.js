@@ -32,6 +32,10 @@ function optimizeKeywords() {
   });
 }
 
+function getMatchingKeywords(url) {
+  return regexKeywords.filter((regex) => new RegExp(regex, "i").test(url));
+}
+
 function updateBlockingRules() {
   const rules = regexKeywords.map((regex, id) => ({
     id: id + 1,
@@ -40,7 +44,9 @@ function updateBlockingRules() {
       type: "redirect",
       redirect: {
         url: chrome.runtime.getURL(
-          `blocked.html?keyword=${encodeURIComponent(regex)}`
+          `blocked.html?keywords=${encodeURIComponent(
+            getMatchingKeywords(regex).join(",")
+          )}`
         ),
       },
     },
@@ -55,3 +61,21 @@ function updateBlockingRules() {
     addRules: rules,
   });
 }
+
+chrome.webRequest.onBeforeRequest.addListener(
+  (details) => {
+    const matchingKeywords = getMatchingKeywords(details.url);
+    if (matchingKeywords.length > 0) {
+      return {
+        redirectUrl: chrome.runtime.getURL(
+          `blocked.html?keywords=${encodeURIComponent(
+            matchingKeywords.join(",")
+          )}`
+        ),
+      };
+    }
+    return { cancel: false };
+  },
+  { urls: ["<all_urls>"] },
+  ["blocking"]
+);
