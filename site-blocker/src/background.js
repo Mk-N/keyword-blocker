@@ -1,38 +1,71 @@
-import { getKeywords } from "./storage.js";
-import { optimizeKeywords } from "./regexUtils.js";
-
-let keywords = [];
-
 chrome.runtime.onInstalled.addListener(() => {
-  loadKeywords();
+  loadKeywords().then((keywords) => {
+    const rules = generateRules(keywords);
+    updateRules(rules);
+  });
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.keywords) {
+    const keywords = changes.keywords.newValue;
+    const rules = generateRules(keywords);
+    updateRules(rules);
+  }
 });
 
 function loadKeywords() {
-  getKeywords().then((loadedKeywords) => {
-    keywords = optimizeKeywords(loadedKeywords);
-    setupBlocking();
+  return new Promise((resolve) => {
+    chrome.storage.local.get(["keywords"], (result) => {
+      resolve(result.keywords || []);
+    });
   });
 }
 
-function setupBlocking() {
-  chrome.webRequest.onBeforeRequest.addListener(
-    blockRequest,
-    { urls: ["<all_urls>"] },
-    ["blocking"]
-  );
+function optimizeKeywords(keywords) {
+  let optimized = [];
+
+  for (let i = 0; i < keywords.length; i++) {
+    let isRedundant = false;
+    for (let j = 0; j < keywords.length; j++) {
+      if (i !== j && keywords[j].includes(keywords[i])) {
+        isRedundant = true;
+        break;
+      }
+    }
+    if (!isRedundant) {
+      optimized.push(keywords[i]);
+    }
+  }
+
+  return optimized;
 }
 
-function blockRequest(details) {
-  const url = details.url;
-  for (const keyword of keywords) {
-    if (new RegExp(keyword).test(url)) {
-      return {
-        redirectUrl:
+function generateRules(keywords) {
+  const optimizedKeywords = optimizeKeywords(keywords);
+  const rules = optimizedKeywords.map((keyword, index) => ({
+    id: index + 1,
+    priority: 1,
+    action: {
+      type: "redirect",
+      redirect: {
+        url:
           chrome.runtime.getURL("src/blockPage.html") +
           "?keyword=" +
           encodeURIComponent(keyword),
-      };
-    }
-  }
-  return { cancel: false };
+      },
+    },
+    condition: {
+      urlFilter: `*://*/*`,
+      regexFilter: keyword,
+    },
+  }));
+
+  return rules;
+}
+
+function updateRules(rules) {
+  chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: Array.from({ length: 1000 }, (_, i) => i + 1),
+    addRules: rules,
+  });
 }

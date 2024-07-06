@@ -5,10 +5,10 @@
   "description": "Blocks sites based on regex keywords and displays the matched keyword.",
   "permissions": [
     "storage",
-    "webRequest",
-    "webRequestBlocking",
-    "tabs",
-    "declarativeNetRequest"
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "declarativeNetRequestFeedback",
+    "tabs"
   ],
   "background": {
     "service_worker": "src/background.js"
@@ -27,8 +27,14 @@
       "128": "icons/icon-128.png"
     }
   },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
-  },
-  "host_permissions": ["<all_urls>"]
+  "host_permissions": ["<all_urls>"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
 }
