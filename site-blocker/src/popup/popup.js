@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fileInput = document.getElementById("fileInput");
   const keywordInput = document.getElementById("keywordInput");
   const keywordList = document.getElementById("keywordList");
+  const clearAllBtn = document.getElementById("clearAllBtn");
 
   // Load existing keywords from storage and display them
   chrome.storage.local.get("keywords", (result) => {
@@ -87,10 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add keyword to the list
+  // Clear all button event listener
+  clearAllBtn.addEventListener("click", () => {
+    chrome.storage.local.set({ keywords: [] }, () => {
+      keywordList.innerHTML = "";
+    });
+  });
+
+  // Add keyword to the list with a delete button
   function addKeywordToList(keyword) {
     const li = document.createElement("li");
     li.textContent = keyword;
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", () => {
+      chrome.storage.local.get("keywords", (result) => {
+        const keywords = result.keywords || [];
+        const updatedKeywords = keywords.filter((kw) => kw !== keyword);
+        chrome.storage.local.set({ keywords: updatedKeywords }, () => {
+          keywordList.removeChild(li);
+        });
+      });
+    });
+    li.appendChild(deleteBtn);
     keywordList.appendChild(li);
   }
 
