@@ -3,6 +3,8 @@ body {
   margin: 0;
   padding: 20px;
   box-sizing: border-box;
+  min-width: 300px; /* Minimum width for the popup */
+  min-height: 300px; /* Minimum height for the popup */
 }
 
 h1 {
