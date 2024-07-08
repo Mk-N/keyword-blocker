@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blocked</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>This URL has been blocked by:</h1>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const keyword = urlParams.get("keyword");
+      document.querySelector("h1").innerText += keyword;
+    </script>
+  </body>
+</html>
