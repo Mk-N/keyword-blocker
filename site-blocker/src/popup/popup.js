@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fileInput = document.getElementById("file-input");
   const optimizeInput = document.getElementById("optimize-input");
   const deleteAllBtn = document.getElementById("delete-all-btn");
+  const saveKeywordsBtn = document.getElementById("save-keywords-btn");
   const keywordsList = document.getElementById("keywords-list");
 
   // Load keywords from storage
@@ -86,12 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Optimize keywords
   function optimizeKeywords(keywords) {
     return new Promise((resolve) => {
-      const worker = new Worker("optimize-worker.js");
-      worker.postMessage(keywords);
-      worker.onmessage = (e) => {
-        resolve(e.data);
-        worker.terminate();
-      };
+      ensureOffscreenDocument().then(() => {
+        chrome.runtime.sendMessage(
+          { action: "optimizeKeywords", keywords },
+          (response) => {
+            resolve(response.optimizedKeywords);
+          }
+        );
+      });
+    });
+  }
+
+  // Ensure offscreen document exists
+  function ensureOffscreenDocument() {
+    if (chrome.offscreen.hasDocument("offscreen.html")) {
+      return Promise.resolve();
+    }
+
+    return chrome.offscreen.createDocument({
+      url: chrome.runtime.getURL("src/offscreen.html"),
+      reasons: [chrome.offscreen.Reason.WORKER],
+      justification: "needed for keyword optimization",
     });
   }
 
@@ -99,6 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteAllBtn.addEventListener("click", () => {
     chrome.storage.local.set({ blockedKeywords: [] }, () => {
       keywordsList.innerHTML = "";
+    });
+  });
+
+  // Save all keywords
+  saveKeywordsBtn.addEventListener("click", () => {
+    chrome.runtime.sendMessage({ action: "saveKeywords" }, (response) => {
+      if (response) {
+        alert("Keywords saved successfully!");
+      }
     });
   });
 });

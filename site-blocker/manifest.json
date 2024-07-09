@@ -1,12 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Site Blocker",
+  "name": "Site Blocker Extension",
   "version": "1.0",
-  "description": "Blocks sites based on user-defined regex keywords.",
-  "permissions": ["storage", "webNavigation", "tabs"],
+  "description": "Block sites based on keywords.",
   "background": {
     "service_worker": "src/background.js"
   },
+  "permissions": ["storage", "webNavigation", "tabs", "offscreen"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"]
+    }
+  ],
   "action": {
     "default_popup": "src/popup/popup.html",
     "default_icon": {
@@ -20,12 +27,5 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png",
     "1000": "icons/icon-1000.png"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["src/content.js"]
-    }
-  ],
-  "host_permissions": ["<all_urls>"]
+  }
 }

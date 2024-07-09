@@ -19,13 +19,28 @@ function loadKeywords() {
   });
 }
 
+function ensureOffscreenDocument() {
+  if (chrome.offscreen.hasDocument("offscreen.html")) {
+    return Promise.resolve();
+  }
+
+  return chrome.offscreen.createDocument({
+    url: chrome.runtime.getURL("src/offscreen.html"),
+    reasons: [chrome.offscreen.Reason.WORKER],
+    justification: "needed for web worker support",
+  });
+}
+
 function checkUrl(url) {
   return new Promise((resolve) => {
-    const worker = new Worker("matcher.js");
-    worker.postMessage({ url, blockedKeywords });
-    worker.onmessage = (e) => {
-      resolve(e.data);
-    };
+    ensureOffscreenDocument().then(() => {
+      chrome.runtime.sendMessage(
+        { action: "checkUrl", url, blockedKeywords },
+        (response) => {
+          resolve(response.keyword);
+        }
+      );
+    });
   });
 }
 
@@ -56,6 +71,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse(true);
   } else if (request.action === "deleteAllKeywords") {
     blockedKeywords = [];
+    saveKeywords();
+    sendResponse(true);
+  } else if (request.action === "saveKeywords") {
     saveKeywords();
     sendResponse(true);
   }
