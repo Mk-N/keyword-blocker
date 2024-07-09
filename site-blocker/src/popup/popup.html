@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h1>Site Blocker</h1>
-    <input type="text" id="keyword-input" placeholder="Enter keyword" />
-    <button id="add-keyword-btn">Add Keyword</button>
-    <input type="file" id="file-input" />
-    <label>
-      <input type="checkbox" id="optimize-checkbox" />
-      Optimize on input
-    </label>
-    <button id="delete-all-btn">Delete All Keywords</button>
-    <p>
-      Note: To ensure accurate regex matching, escape dots in URLs (e.g., use
-      "\." to match a literal dot).
-    </p>
-    <ul id="keyword-list"></ul>
-    <script src="popup.js"></script>
+    <div class="container">
+      <h1>Site Blocker</h1>
+      <input type="text" id="keyword-input" placeholder="Enter keyword" />
+      <button id="add-keyword-btn">Add Keyword</button>
+      <div class="file-input-wrapper">
+        <input type="file" id="file-input" />
+        <label for="optimize-input">
+          <input type="checkbox" id="optimize-input" />
+          Optimize on input
+        </label>
+      </div>
+      <button id="delete-all-btn">Delete All Keywords</button>
+      <p class="note">
+        Note: To ensure accurate regex matching, escape dots in URLs (e.g., use
+        "\." to match a literal dot).
+      </p>
+      <div id="keywords-list"></div>
+    </div>
+    <script src="popup.js" defer></script>
   </body>
 </html>
