@@ -20,24 +20,25 @@ function loadKeywords() {
 }
 
 function checkUrl(url) {
-  for (let keyword of blockedKeywords) {
-    let regex = new RegExp(keyword, "i");
-    if (regex.test(url)) {
-      return keyword;
-    }
-  }
-  return null;
+  return new Promise((resolve) => {
+    const worker = new Worker("matcher.js");
+    worker.postMessage({ url, blockedKeywords });
+    worker.onmessage = (e) => {
+      resolve(e.data);
+    };
+  });
 }
 
 chrome.webNavigation.onBeforeNavigate.addListener(
   (details) => {
     if (!blockingEnabled) return;
-    let keyword = checkUrl(details.url);
-    if (keyword) {
-      chrome.tabs.update(details.tabId, {
-        url: `blocked.html?keyword=${encodeURIComponent(keyword)}`,
-      });
-    }
+    checkUrl(details.url).then((keyword) => {
+      if (keyword) {
+        chrome.tabs.update(details.tabId, {
+          url: `src/blocked.html?keyword=${encodeURIComponent(keyword)}`,
+        });
+      }
+    });
   },
   { url: [{ urlMatches: ".*" }] }
 );

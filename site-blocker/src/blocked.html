@@ -19,13 +19,9 @@
         color: red;
       }
     </style>
+    <script src="blocked.js" defer></script>
   </head>
   <body>
     <h1>This URL has been blocked by:</h1>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const keyword = urlParams.get("keyword");
-      document.querySelector("h1").innerText += keyword;
-    </script>
   </body>
 </html>
