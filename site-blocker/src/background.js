@@ -20,14 +20,23 @@ function loadKeywords() {
 }
 
 function ensureOffscreenDocument() {
-  if (chrome.offscreen.hasDocument("offscreen.html")) {
-    return Promise.resolve();
-  }
-
-  return chrome.offscreen.createDocument({
-    url: chrome.runtime.getURL("src/offscreen.html"),
-    reasons: [chrome.offscreen.Reason.WORKER],
-    justification: "needed for web worker support",
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage({ action: "checkOffscreen" }, (response) => {
+      if (response && response.exists) {
+        resolve();
+      } else {
+        chrome.offscreen.createDocument(
+          {
+            url: chrome.runtime.getURL("src/offscreen.html"),
+            reasons: ["WORKERS"],
+            justification: "needed for web worker support",
+          },
+          () => {
+            resolve();
+          }
+        );
+      }
+    });
   });
 }
 
@@ -76,5 +85,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else if (request.action === "saveKeywords") {
     saveKeywords();
     sendResponse(true);
+  } else if (request.action === "checkOffscreen") {
+    // This is just to avoid an error if this action is received here
+    sendResponse({ exists: false });
   }
 });

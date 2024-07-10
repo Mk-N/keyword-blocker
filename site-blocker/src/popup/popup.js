@@ -100,14 +100,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ensure offscreen document exists
   function ensureOffscreenDocument() {
-    if (chrome.offscreen.hasDocument("offscreen.html")) {
-      return Promise.resolve();
-    }
-
-    return chrome.offscreen.createDocument({
-      url: chrome.runtime.getURL("src/offscreen.html"),
-      reasons: [chrome.offscreen.Reason.WORKER],
-      justification: "needed for keyword optimization",
+    return new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage({ action: "checkOffscreen" }, (response) => {
+        if (response && response.exists) {
+          resolve();
+        } else {
+          chrome.offscreen.createDocument(
+            {
+              url: chrome.runtime.getURL("src/offscreen.html"),
+              reasons: ["WORKERS"],
+              justification: "needed for keyword optimization",
+            },
+            () => {
+              resolve();
+            }
+          );
+        }
+      });
     });
   }
 
