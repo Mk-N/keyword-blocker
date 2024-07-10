@@ -21,10 +21,13 @@ function loadKeywords() {
 
 function ensureOffscreenDocument() {
   return new Promise((resolve, reject) => {
+    console.log("Checking if offscreen document exists...");
     chrome.runtime.sendMessage({ action: "checkOffscreen" }, (response) => {
       if (response && response.exists) {
+        console.log("Offscreen document exists.");
         resolve();
       } else {
+        console.log("Creating offscreen document...");
         chrome.offscreen.createDocument(
           {
             url: chrome.runtime.getURL("src/offscreen.html"),
@@ -32,6 +35,7 @@ function ensureOffscreenDocument() {
             justification: "needed for web worker support",
           },
           () => {
+            console.log("Offscreen document created.");
             resolve();
           }
         );
@@ -68,6 +72,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(
 );
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log("Background script received message:", request.action);
   if (request.action === "getKeywords") {
     sendResponse(blockedKeywords);
   } else if (request.action === "addKeyword") {
