@@ -21,8 +21,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       worker.terminate();
     };
     return true; // Indicates that the response is sent asynchronously.
-  } else if (request.action === "checkOffscreen") {
-    console.log("checkOffscreen received in offscreen.js");
-    sendResponse({ exists: true });
   }
 });

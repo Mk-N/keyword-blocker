@@ -1,5 +1,6 @@
 let blockedKeywords = [];
 let blockingEnabled = true;
+let creating; // A global promise to avoid concurrency issues
 
 chrome.storage.local.get(["blockedKeywords"], (result) => {
   if (result.blockedKeywords) {
@@ -19,60 +20,69 @@ function loadKeywords() {
   });
 }
 
-function ensureOffscreenDocument() {
-  return new Promise((resolve, reject) => {
-    console.log("Checking if offscreen document exists...");
-    chrome.runtime.sendMessage({ action: "checkOffscreen" }, (response) => {
-      if (response && response.exists) {
-        console.log("Offscreen document exists.");
-        resolve();
-      } else {
-        console.log("Creating offscreen document...");
-        chrome.offscreen.createDocument(
-          {
-            url: chrome.runtime.getURL("src/offscreen.html"),
-            reasons: ["WORKERS"],
-            justification: "needed for web worker support",
-          },
-          () => {
-            console.log("Offscreen document created.");
-            resolve();
-          }
-        );
-      }
-    });
+async function setupOffscreenDocument(path) {
+  const offscreenUrl = chrome.runtime.getURL(path);
+  const existingContexts = await chrome.runtime.getContexts({
+    contextTypes: ["OFFSCREEN_DOCUMENT"],
+    documentUrls: [offscreenUrl],
   });
+
+  if (existingContexts.length > 0) {
+    return;
+  }
+
+  if (creating) {
+    await creating;
+  } else {
+    creating = chrome.offscreen.createDocument({
+      url: path,
+      reasons: ["WORKERS"],
+      justification: "needed for web worker support",
+    });
+    await creating;
+    creating = null;
+  }
 }
 
-function checkUrl(url) {
-  return new Promise((resolve) => {
-    ensureOffscreenDocument().then(() => {
-      chrome.runtime.sendMessage(
-        { action: "checkUrl", url, blockedKeywords },
-        (response) => {
+async function ensureOffscreenDocument() {
+  await setupOffscreenDocument("src/offscreen.html");
+}
+
+async function checkUrl(url) {
+  await ensureOffscreenDocument();
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage(
+      { action: "checkUrl", url, blockedKeywords },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+        } else {
           resolve(response.keyword);
         }
-      );
-    });
+      }
+    );
   });
 }
 
 chrome.webNavigation.onBeforeNavigate.addListener(
   (details) => {
     if (!blockingEnabled) return;
-    checkUrl(details.url).then((keyword) => {
-      if (keyword) {
-        chrome.tabs.update(details.tabId, {
-          url: `src/blocked.html?keyword=${encodeURIComponent(keyword)}`,
-        });
-      }
-    });
+    checkUrl(details.url)
+      .then((keyword) => {
+        if (keyword) {
+          chrome.tabs.update(details.tabId, {
+            url: `src/blocked.html?keyword=${encodeURIComponent(keyword)}`,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking URL:", error);
+      });
   },
   { url: [{ urlMatches: ".*" }] }
 );
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log("Background script received message:", request.action);
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.action === "getKeywords") {
     sendResponse(blockedKeywords);
   } else if (request.action === "addKeyword") {
@@ -90,8 +100,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else if (request.action === "saveKeywords") {
     saveKeywords();
     sendResponse(true);
-  } else if (request.action === "checkOffscreen") {
-    // This is just to avoid an error if this action is received here
-    sendResponse({ exists: false });
+  } else if (request.action === "setupOffscreenDocument") {
+    await setupOffscreenDocument(request.path);
+    sendResponse(true);
   }
 });

@@ -85,38 +85,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Optimize keywords
-  function optimizeKeywords(keywords) {
-    return new Promise((resolve) => {
-      ensureOffscreenDocument().then(() => {
-        chrome.runtime.sendMessage(
-          { action: "optimizeKeywords", keywords },
-          (response) => {
+  async function optimizeKeywords(keywords) {
+    await ensureOffscreenDocument();
+    return new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage(
+        { action: "optimizeKeywords", keywords },
+        (response) => {
+          if (chrome.runtime.lastError) {
+            reject(chrome.runtime.lastError);
+          } else {
             resolve(response.optimizedKeywords);
           }
-        );
-      });
+        }
+      );
     });
   }
 
   // Ensure offscreen document exists
-  function ensureOffscreenDocument() {
+  async function ensureOffscreenDocument() {
     return new Promise((resolve, reject) => {
-      chrome.runtime.sendMessage({ action: "checkOffscreen" }, (response) => {
-        if (response && response.exists) {
-          resolve();
-        } else {
-          chrome.offscreen.createDocument(
-            {
-              url: chrome.runtime.getURL("src/offscreen.html"),
-              reasons: ["WORKERS"],
-              justification: "needed for keyword optimization",
-            },
-            () => {
-              resolve();
-            }
-          );
+      chrome.runtime.sendMessage(
+        { action: "setupOffscreenDocument", path: "src/offscreen.html" },
+        (response) => {
+          if (chrome.runtime.lastError) {
+            reject(chrome.runtime.lastError);
+          } else {
+            resolve(response);
+          }
         }
-      });
+      );
     });
   }
 
