@@ -1,4 +1,8 @@
+console.log("popup.js is loaded");
+
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded and parsed");
+
   const keywordInput = document.getElementById("keyword-input");
   const addKeywordBtn = document.getElementById("add-keyword-btn");
   const fileInput = document.getElementById("file-input");
@@ -16,13 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
     blockedKeywords.forEach((keyword) => {
       addKeywordToList(keyword);
     });
+    console.log("Loaded blocked keywords:", blockedKeywords);
   });
 
   // Debounced save function
   function debounceSaveKeywords() {
     if (saveTimeout) clearTimeout(saveTimeout);
     saveTimeout = setTimeout(() => {
-      chrome.storage.local.set({ blockedKeywords });
+      chrome.storage.local.set({ blockedKeywords }, () => {
+        console.log("Blocked keywords saved:", blockedKeywords);
+      });
     }, 300);
   }
 
@@ -50,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     keywordItem.appendChild(removeBtn);
     keywordsList.appendChild(keywordItem);
+    console.log("Added keyword to list:", keyword);
   }
 
   // Remove keyword
@@ -58,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let blockedKeywords = result.blockedKeywords || [];
       blockedKeywords = blockedKeywords.filter((kw) => kw !== keyword);
       debounceSaveKeywords();
+      console.log("Removed keyword:", keyword);
     });
   }
 
@@ -66,24 +75,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = async (e) => {
-        try {
-          const keywords = e.target.result
-            .split("\n")
-            .map((line) => line.trim())
-            .filter((line) => line && !blockedKeywords.includes(line));
-          if (optimizeInput.checked) {
-            const optimizedKeywords = await optimizeKeywords(keywords);
-            optimizedKeywords.forEach((keyword) => addKeywordToList(keyword));
-            blockedKeywords.push(...optimizedKeywords);
-          } else {
-            keywords.forEach((keyword) => addKeywordToList(keyword));
-            blockedKeywords.push(...keywords);
-          }
-          debounceSaveKeywords();
-        } catch (error) {
-          console.error("Error optimizing keywords:", error);
+      reader.onload = (e) => {
+        const keywords = e.target.result
+          .split("\n")
+          .map((line) => line.trim())
+          .filter((line) => line && !blockedKeywords.includes(line));
+        if (optimizeInput.checked) {
+          optimizeKeywords(keywords)
+            .then((optimizedKeywords) => {
+              optimizedKeywords.forEach((keyword) => addKeywordToList(keyword));
+              blockedKeywords.push(...optimizedKeywords);
+            })
+            .catch((error) => {
+              console.error("Error optimizing keywords:", error);
+            });
+        } else {
+          keywords.forEach((keyword) => addKeywordToList(keyword));
+          blockedKeywords.push(...keywords);
         }
+        debounceSaveKeywords();
+        console.log("Loaded keywords from file:", keywords);
       };
       reader.readAsText(file);
     }
