@@ -66,21 +66,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const keywords = e.target.result
-          .split("\n")
-          .map((line) => line.trim())
-          .filter((line) => line && !blockedKeywords.includes(line));
-        if (optimizeInput.checked) {
-          optimizeKeywords(keywords).then((optimizedKeywords) => {
+      reader.onload = async (e) => {
+        try {
+          const keywords = e.target.result
+            .split("\n")
+            .map((line) => line.trim())
+            .filter((line) => line && !blockedKeywords.includes(line));
+          if (optimizeInput.checked) {
+            const optimizedKeywords = await optimizeKeywords(keywords);
             optimizedKeywords.forEach((keyword) => addKeywordToList(keyword));
             blockedKeywords.push(...optimizedKeywords);
-            debounceSaveKeywords();
-          });
-        } else {
-          keywords.forEach((keyword) => addKeywordToList(keyword));
-          blockedKeywords.push(...keywords);
+          } else {
+            keywords.forEach((keyword) => addKeywordToList(keyword));
+            blockedKeywords.push(...keywords);
+          }
           debounceSaveKeywords();
+        } catch (error) {
+          console.error("Error optimizing keywords:", error);
         }
       };
       reader.readAsText(file);
@@ -95,9 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
         { action: "optimizeKeywords", keywords },
         (response) => {
           if (chrome.runtime.lastError) {
-            reject(chrome.runtime.lastError);
-          } else {
+            reject(new Error(chrome.runtime.lastError.message));
+          } else if (response && response.optimizedKeywords) {
             resolve(response.optimizedKeywords);
+          } else {
+            reject(new Error("Failed to optimize keywords"));
           }
         }
       );
@@ -111,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { action: "setupOffscreenDocument", path: "src/offscreen.html" },
         (response) => {
           if (chrome.runtime.lastError) {
-            reject(chrome.runtime.lastError);
+            reject(new Error(chrome.runtime.lastError.message));
           } else {
             resolve(response);
           }

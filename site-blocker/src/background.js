@@ -55,7 +55,7 @@ async function checkUrl(url) {
       { action: "checkUrl", url, blockedKeywords },
       (response) => {
         if (chrome.runtime.lastError) {
-          reject(chrome.runtime.lastError);
+          reject(new Error(chrome.runtime.lastError.message));
         } else {
           resolve(response.keyword);
         }
