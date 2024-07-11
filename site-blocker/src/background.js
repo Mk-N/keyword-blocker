@@ -126,9 +126,17 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
       await saveKeywords();
       sendResponse(true);
     } else if (request.action === "setupOffscreenDocument") {
-      const result = await setupOffscreenDocument(request.path);
-      console.log("setupOffscreenDocument result:", result);
-      sendResponse(result);
+      (async () => {
+        try {
+          const result = await setupOffscreenDocument(request.path);
+          console.log("setupOffscreenDocument result:", result);
+          sendResponse({ success: result.success, path: result.path });
+        } catch (error) {
+          console.error("Error in setupOffscreenDocument:", error);
+          sendResponse({ success: false, error: error.message });
+        }
+      })();
+      return true; // Indicate that the response will be sent asynchronously
     }
   } catch (error) {
     console.error("Error in background script:", error);

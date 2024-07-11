@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
               chrome.runtime.lastError
             );
             reject(new Error(chrome.runtime.lastError.message));
-          } else if (response && response.error) {
+          } else if (response && !response.success) {
             console.error("Error in setupOffscreenDocument:", response.error);
             reject(new Error(response.error));
           } else {
