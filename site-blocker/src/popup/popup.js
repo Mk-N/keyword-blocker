@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let blockedKeywords = [];
   let saveTimeout;
 
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   // Load keywords from storage
   chrome.storage.local.get(["blockedKeywords"], (result) => {
     blockedKeywords = result.blockedKeywords || [];
@@ -147,18 +151,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ensure offscreen document exists
   async function ensureOffscreenDocument() {
     console.log("Ensuring offscreen document exists");
+
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage(
         { action: "setupOffscreenDocument", path: "src/offscreen.html" },
-        (response) => {
-          console.log("this is the result:", response);
+        async (response) => {
+          console.log("start delay", response);
+          await delay(5000);
+          console.log("end delay", response);
+          console.log("Received response from setupOffscreenDocument:");
           if (chrome.runtime.lastError) {
             console.error(
               "Error in setupOffscreenDocument:",
               chrome.runtime.lastError
             );
             reject(new Error(chrome.runtime.lastError.message));
-          } else if (response.error) {
+          } else if (response && response.error) {
             console.error("Error in setupOffscreenDocument:", response.error);
             reject(new Error(response.error));
           } else {
