@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveKeywordsBtn = document.getElementById("save-keywords-btn");
   const keywordsList = document.getElementById("keywords-list");
   let blockedKeywords = [];
+  let saveTimeout;
 
   // Load keywords from storage
   chrome.storage.local.get(["blockedKeywords"], (result) => {
@@ -17,13 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Debounced save function
+  function debounceSaveKeywords() {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      chrome.storage.local.set({ blockedKeywords });
+    }, 300);
+  }
+
   // Add keyword
   addKeywordBtn.addEventListener("click", () => {
     const keyword = keywordInput.value.trim();
     if (keyword && !blockedKeywords.includes(keyword)) {
       blockedKeywords.push(keyword);
       addKeywordToList(keyword);
-      saveKeywords();
+      debounceSaveKeywords();
       keywordInput.value = "";
     }
   });
@@ -48,13 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get(["blockedKeywords"], (result) => {
       let blockedKeywords = result.blockedKeywords || [];
       blockedKeywords = blockedKeywords.filter((kw) => kw !== keyword);
-      saveKeywords();
+      debounceSaveKeywords();
     });
-  }
-
-  // Save keywords
-  function saveKeywords() {
-    chrome.storage.local.set({ blockedKeywords });
   }
 
   // Handle file input
@@ -66,15 +70,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const keywords = e.target.result
           .split("\n")
           .map((line) => line.trim())
-          .filter((line) => line);
+          .filter((line) => line && !blockedKeywords.includes(line));
         if (optimizeInput.checked) {
           optimizeKeywords(keywords).then((optimizedKeywords) => {
-            optimizedKeywords.forEach((keyword) => addKeyword(keyword));
-            saveKeywords();
+            optimizedKeywords.forEach((keyword) => addKeywordToList(keyword));
+            blockedKeywords.push(...optimizedKeywords);
+            debounceSaveKeywords();
           });
         } else {
-          keywords.forEach((keyword) => addKeyword(keyword));
-          saveKeywords();
+          keywords.forEach((keyword) => addKeywordToList(keyword));
+          blockedKeywords.push(...keywords);
+          debounceSaveKeywords();
         }
       };
       reader.readAsText(file);
@@ -117,16 +123,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Delete all keywords
   deleteAllBtn.addEventListener("click", () => {
     blockedKeywords = [];
-    saveKeywords();
-    keywordsList.innerHTML = "";
+    chrome.storage.local.set({ blockedKeywords }, () => {
+      keywordsList.innerHTML = "";
+    });
   });
 
   // Save all keywords on button click
   saveKeywordsBtn.addEventListener("click", () => {
-    saveKeywords();
+    debounceSaveKeywords();
     alert("Keywords saved successfully!");
   });
 
   // Ensure save operations complete before popup closes
-  window.addEventListener("beforeunload", saveKeywords);
+  window.addEventListener("beforeunload", () => {
+    debounceSaveKeywords();
+  });
 });
