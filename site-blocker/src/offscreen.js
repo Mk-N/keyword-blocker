@@ -1,3 +1,5 @@
+console.log("Offscreen document loaded");
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log("Offscreen document received message:", request.action);
   if (request.action === "checkUrl") {

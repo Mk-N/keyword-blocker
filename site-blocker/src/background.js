@@ -28,12 +28,17 @@ async function setupOffscreenDocument(path) {
   });
 
   if (existingContexts.length > 0) {
-    return;
+    console.log("Offscreen document already exists.");
+    return path;
   }
 
   if (creating) {
+    console.log(
+      "Waiting for existing offscreen document creation process to complete."
+    );
     await creating;
   } else {
+    console.log("Creating new offscreen document.");
     creating = chrome.offscreen.createDocument({
       url: path,
       reasons: ["WORKERS"],
@@ -41,22 +46,22 @@ async function setupOffscreenDocument(path) {
     });
     await creating;
     creating = null;
+    console.log("Offscreen document created.");
   }
-}
-
-async function ensureOffscreenDocument() {
-  await setupOffscreenDocument("src/offscreen.html");
+  return path;
 }
 
 async function checkUrl(url) {
-  await ensureOffscreenDocument();
+  await setupOffscreenDocument("src/offscreen.html");
   return new Promise((resolve, reject) => {
     chrome.runtime.sendMessage(
       { action: "checkUrl", url, blockedKeywords },
       (response) => {
         if (chrome.runtime.lastError) {
+          console.error("Error in checkUrl message:", chrome.runtime.lastError);
           reject(new Error(chrome.runtime.lastError.message));
         } else {
+          console.log("URL checked:", response.keyword);
           resolve(response.keyword);
         }
       }
@@ -83,6 +88,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(
 );
 
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+  console.log("Background script received message:", request.action);
   if (request.action === "getKeywords") {
     sendResponse(blockedKeywords);
   } else if (request.action === "addKeyword") {
@@ -101,7 +107,6 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     saveKeywords();
     sendResponse(true);
   } else if (request.action === "setupOffscreenDocument") {
-    await setupOffscreenDocument(request.path);
-    sendResponse(true);
+    sendResponse(await setupOffscreenDocument(request.path));
   }
 });

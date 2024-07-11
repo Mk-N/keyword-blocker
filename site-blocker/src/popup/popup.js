@@ -83,8 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (optimizeInput.checked) {
           optimizeKeywords(keywords)
             .then((optimizedKeywords) => {
+              console.log("keywords optimized");
               optimizedKeywords.forEach((keyword) => addKeywordToList(keyword));
               blockedKeywords.push(...optimizedKeywords);
+              debounceSaveKeywords();
+              console.log(
+                "Loaded optimized keywords from file:",
+                optimizedKeywords
+              );
             })
             .catch((error) => {
               console.error("Error optimizing keywords:", error);
@@ -92,17 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           keywords.forEach((keyword) => addKeywordToList(keyword));
           blockedKeywords.push(...keywords);
+          debounceSaveKeywords();
+          console.log("Loaded keywords from file:", keywords);
         }
-        debounceSaveKeywords();
-        console.log("Loaded keywords from file:", keywords);
       };
-      reader.readAsText(file);
+      setTimeout(reader.readAsText(file), 4000);
     }
   });
 
   // Optimize keywords
   async function optimizeKeywords(keywords) {
+    console.log("in optimizing funct");
     await ensureOffscreenDocument();
+    console.log("passed");
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage(
         { action: "optimizeKeywords", keywords },
@@ -121,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ensure offscreen document exists
   async function ensureOffscreenDocument() {
+    console.log("in here");
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage(
         { action: "setupOffscreenDocument", path: "src/offscreen.html" },
