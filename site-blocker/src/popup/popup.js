@@ -27,16 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Loaded blocked keywords:", blockedKeywords);
   });
 
-  // Debounced save function
-  function debounceSaveKeywords() {
-    if (saveTimeout) clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(() => {
-      chrome.storage.local.set({ blockedKeywords }, () => {
-        console.log("Blocked keywords saved:", blockedKeywords);
-      });
-    }, 300);
-  }
-
   // Add keyword
   addKeywordBtn.addEventListener("click", () => {
     const keyword = keywordInput.value.trim();
@@ -64,13 +54,29 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Added keyword to list:", keyword);
   }
 
+  // Debounced save function
+  function debounceSaveKeywords(callback = () => {}) {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      chrome.storage.local.set({ blockedKeywords }, () => {
+        if (chrome.runtime.lastError) {
+          console.error(
+            "Failed to save blocked keywords:",
+            chrome.runtime.lastError
+          );
+        } else {
+          console.log("Blocked keywords saved:", blockedKeywords);
+          callback();
+        }
+      });
+    }, 300);
+  }
+
   // Remove keyword
   function removeKeyword(keyword) {
-    chrome.storage.local.get(["blockedKeywords"], (result) => {
-      let blockedKeywords = result.blockedKeywords || [];
-      blockedKeywords = blockedKeywords.filter((kw) => kw !== keyword);
-      debounceSaveKeywords();
-      console.log("Removed keyword:", keyword);
+    blockedKeywords = blockedKeywords.filter((kw) => kw !== keyword);
+    debounceSaveKeywords(() => {
+      console.log("Removed and saved keyword:", keyword);
     });
   }
 
@@ -182,18 +188,29 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteAllBtn.addEventListener("click", () => {
     blockedKeywords = [];
     chrome.storage.local.set({ blockedKeywords }, () => {
-      keywordsList.innerHTML = "";
+      if (chrome.runtime.lastError) {
+        console.error(
+          "Failed to delete all keywords:",
+          chrome.runtime.lastError
+        );
+      } else {
+        keywordsList.innerHTML = "";
+        console.log("Deleted all keywords");
+      }
     });
   });
 
   // Save all keywords on button click
   saveKeywordsBtn.addEventListener("click", () => {
-    debounceSaveKeywords();
-    alert("Keywords saved successfully!");
+    debounceSaveKeywords(() => {
+      alert("Keywords saved successfully!");
+    });
   });
 
   // Ensure save operations complete before popup closes
-  window.addEventListener("beforeunload", () => {
+  window.addEventListener("beforeunload", (event) => {
+    event.preventDefault();
+    event.returnValue = ""; // Ensure modern browsers show a confirmation dialog
     debounceSaveKeywords();
   });
 });
